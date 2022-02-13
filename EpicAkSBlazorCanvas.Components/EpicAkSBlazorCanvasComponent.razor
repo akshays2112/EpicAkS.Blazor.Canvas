@@ -1,0 +1,46 @@
+﻿@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Components
+@inject IJSRuntime jsRuntime
+<div @ref="divCanvas" @onclick="@(evt => MouseEvent(evt, MouseEventTypes.Click))"
+    @onmousedown="@(evt => MouseEvent(evt, MouseEventTypes.Down))"
+    @onmousemove="@(evt => MouseEvent(evt, MouseEventTypes.Move))"
+    @onmouseout="@(evt => MouseEvent(evt, MouseEventTypes.Out))" 
+    @onmouseover="@(evt => MouseEvent(evt, MouseEventTypes.Over))"
+    @onmouseup="@(evt => MouseEvent(evt, MouseEventTypes.Up))"
+    @onmousewheel="@(evt => MouseEvent(evt, MouseEventTypes.Wheel))" 
+    style="border-style:none;margin:0 0 0 0;padding:0 0 0 0;overflow:hidden">
+</div>
+@code {
+    private ElementReference divCanvas;
+    private static bool renderOnce = false;
+
+    [Parameter]
+    public string? Id { get; set; }
+
+    [Parameter]
+    public Helpers.EpicAkSBlazorCanvasComponentInfo.CallOnRender? CallOnRender { get; set; }
+
+    private Helpers.EpicAkSBlazorCanvasComponentInfo epicAkSBlazorCanvasComponentInfo = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (renderOnce) return;
+        renderOnce = true;
+        epicAkSBlazorCanvasComponentInfo.Id = Id;
+        epicAkSBlazorCanvasComponentInfo.EpicAkSBlazorCanvas = new(jsRuntime);
+        await epicAkSBlazorCanvasComponentInfo.EpicAkSBlazorCanvas.CreateEpicAkSBlazorCanvas(divCanvas, "epicAkSBlazorCanvas1");
+        await epicAkSBlazorCanvasComponentInfo.EpicAkSBlazorCanvas.SetCurrentCanvas2DContext();
+        Helpers.EpicAkSBlazorCanvasComponentInfos.Add(epicAkSBlazorCanvasComponentInfo);
+        if(CallOnRender is not null) await CallOnRender();
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task MouseEvent(MouseEventArgs eventArgs, MouseEventTypes mouseEventType)
+    {
+        if (epicAkSBlazorCanvasComponentInfo.EpicAkSBlazorCanvas is not null)
+        {
+            MouseCoords mouseCoords = await epicAkSBlazorCanvasComponentInfo.EpicAkSBlazorCanvas.GetMouseCoords(eventArgs, mouseEventType);
+            epicAkSBlazorCanvasComponentInfo.EpicAkSBlazorCanvasComponentMouseEvents?.DoMouseEvent(mouseCoords, mouseEventType);
+        }
+    }
+}
