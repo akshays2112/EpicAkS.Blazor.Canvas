@@ -1,5 +1,6 @@
 ﻿using EpicAkS.Blazor.Canvas.Enums;
 using EpicAkS.Blazor.Canvas.Structs;
+using Microsoft.AspNetCore.Components.Web;
 using static EpicAkS.Blazor.Canvas.Components.Helpers;
 
 namespace EpicAkS.Blazor.Canvas.Components
@@ -81,9 +82,9 @@ namespace EpicAkS.Blazor.Canvas.Components
             }
         }
 
-        public async Task DoKeyboardEvents(KeyboardEventTypes keyboardEventType, string key)
+        public async Task DoKeyboardEvents(KeyboardEventTypes keyboardEventType, KeyboardEventArgs eventArgs)
         {
-            await WindowWithFocus.KeyboardEvents.DoKeyboardEvent(keyboardEventType, key);
+            await WindowWithFocus.KeyboardEvents.DoKeyboardEvent(keyboardEventType, eventArgs);
         }
     }
 }

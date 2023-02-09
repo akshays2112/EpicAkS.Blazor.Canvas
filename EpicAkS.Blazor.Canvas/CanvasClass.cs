@@ -53,14 +53,14 @@ namespace EpicAkS.Blazor.Canvas
         ///<summary></summary>
         public async Task<MouseCoords> GetMouseCoords(MouseEventArgs eventArgs, MouseEventTypes mouseEventType)
         {
-            string? data = await JsInterops.GetJSPropertyValuesByElementReference(DivCanvas, new string[] { "offsetLeft", "offsetTop" });
+            string? data = await JsInterops.GetMouseXY((int)eventArgs.ClientX, (int)eventArgs.ClientY);
             if (data is not null)
             {
                 MouseCoords coords = JsonSerializer.Deserialize<MouseCoords>(data);
                 coords.ClientX = eventArgs.ClientX;
                 coords.ClientY = eventArgs.ClientY;
-                coords.MouseX = eventArgs.ClientX - coords.OffsetLeft;
-                coords.MouseY = eventArgs.ClientY - coords.OffsetTop;
+                coords.MouseX = coords.MouseX;
+                coords.MouseY = coords.MouseY;
                 coords.MouseEventType = mouseEventType;
                 return coords;
             }

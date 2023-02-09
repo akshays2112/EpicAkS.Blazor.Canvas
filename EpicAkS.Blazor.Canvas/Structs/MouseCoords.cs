@@ -13,17 +13,17 @@ public struct MouseCoords
     public double MouseY { get; set; }
 
     ///<summary>Custom</summary>
+    [JsonPropertyName("ClientX")]
     public double ClientX { get; set; }
 
     ///<summary>Custom</summary>
+    [JsonPropertyName("ClientY")]
     public double ClientY { get; set; }
 
     ///<summary>Custom</summary>
-    [JsonPropertyName("offsetLeft")]
     public double OffsetLeft { get; set; }
 
     ///<summary>Custom</summary>
-    [JsonPropertyName("offsetTop")]
     public double OffsetTop { get; set; }
 
     ///<summary>Custom</summary>

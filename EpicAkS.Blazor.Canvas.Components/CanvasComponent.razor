@@ -12,7 +12,7 @@
      @onkeyup="(evt => KeyboardEvent(evt, KeyboardEventTypes.KeyUp))"
      @onkeypress="(evt => KeyboardEvent(evt, KeyboardEventTypes.KeyPress))"
      tabindex="0"
-     style="border-style:none;margin:0 0 0 0;padding:0 0 0 0;overflow:hidden">
+     style="border-style:none;margin:0 0 0 0;padding:0 0 0 0;">
 </div>
 @code {
     private ElementReference divCanvas;
@@ -57,7 +57,7 @@
     {
         if (CanvasComponentInfo?.Canvas is not null)
         {
-            await WindowManager.DoKeyboardEvents(keyboardEventType, eventArgs.Key);
+            await WindowManager.DoKeyboardEvents(keyboardEventType, eventArgs);
         }
     }
 }

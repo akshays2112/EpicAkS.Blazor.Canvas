@@ -2,6 +2,14 @@ window.epicAkSHelperFunctions = {
     ctxByCanvasId: [],
     currentCtx: null,
     varsToHold: [],
+    getMouseXY: function (clientX, clientY) {
+        if(!this.currentCtx) return;
+        var rect = this.currentCtx.canvas.getBoundingClientRect();
+        return JSON.stringify({
+            MouseX: clientX - rect.left + window.pageXOffset,
+            MouseY: clientY - rect.top + window.pageYOffset
+        });
+    },
     getElementProps: function (elem, props) {
         let obj = {};
         for (let i = 0; i < props.length; i++) {

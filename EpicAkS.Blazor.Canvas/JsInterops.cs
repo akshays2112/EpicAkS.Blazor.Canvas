@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Text.Json;
 using EpicAkS.Blazor.Canvas.Structs;
+using System.Security.Cryptography.X509Certificates;
 
 namespace EpicAkS.Blazor.Canvas
 {
@@ -12,6 +13,13 @@ namespace EpicAkS.Blazor.Canvas
         internal JsInterops(IJSRuntime jsRuntime)
         {
             JSRuntime = jsRuntime;
+        }
+
+        internal async Task<string> GetMouseXY(int clientX, int clientY)
+        {
+            if (JSRuntime is null) return String.Empty;
+            return await JSRuntime.InvokeAsync<string>("window.epicAkSHelperFunctions.getMouseXY",
+                new object[] { clientX, clientY });
         }
 
         internal async Task<string> GetJSPropertyValuesByElementReference(ElementReference el, string[] props)

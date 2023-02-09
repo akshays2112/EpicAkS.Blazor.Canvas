@@ -9,12 +9,14 @@
 
     private async Task MyMouseClick(MouseCoords mouseCoords)
     {
-        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.ClientX, (int)mouseCoords.ClientY, 200, 200);
+        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) 
+            await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.ClientX, (int)mouseCoords.ClientY, 200, 200);
     }
 
-    private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, string key)
+    private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
     {
-        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect(100, 100, 200, 200);
+        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) 
+            await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect(100, 100, 200, 200);
     }
 
     private async Task InitDraw()
