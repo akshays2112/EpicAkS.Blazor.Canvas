@@ -1,0 +1,713 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EpicAkS.Blazor.Canvas</name>
+    </assembly>
+    <members>
+        <member name="T:EpicAkS.Blazor.Canvas.CanvasClass">
+            <summary></summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.CanvasClass.DivCanvas">
+            <summary></summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.CanvasClass.CanvasWidthHeightProp">
+            <summary></summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.CanvasClass.CanvasId">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.#ctor(Microsoft.JSInterop.IJSRuntime)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.CreateCanvas(Microsoft.AspNetCore.Components.ElementReference,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.CreateCanvas(Microsoft.AspNetCore.Components.ElementReference,System.String,EpicAkS.Blazor.Canvas.Structs.ContextAttributes)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetCurrentCanvas2DContext">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetMouseCoords(Microsoft.AspNetCore.Components.Web.MouseEventArgs,EpicAkS.Blazor.Canvas.Enums.MouseEventTypes)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.ClearRect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.FillRect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.StrokeRect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeRect</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.FillText(System.String,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.FillText(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.StrokeText(System.String,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeText</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.StrokeText(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeText</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.MeasureTextAndReturnNewTextMetrics(System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetTextMetric(EpicAkS.Blazor.Canvas.TextMetrics)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.MeasureTextAndReturnNewFilledTextMetrics(System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineWidth">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineWidth</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineWidth(System.Nullable{System.Double})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineWidth</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineCap">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineCap(System.Nullable{System.Double})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineJoin">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineJoin(System.Nullable{EpicAkS.Blazor.Canvas.Enums.LineJoinTypes})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetMiterLimit">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/miterLimit</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetMiterLimit(System.Nullable{System.Double})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/miterLimit</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineDash">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getLineDash</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineDash(System.Int32[])">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineDashOffset">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineDashOffset(System.Nullable{System.Double})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetFont">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetFont(System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetTextAlign">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetTextAlign(System.Nullable{EpicAkS.Blazor.Canvas.Enums.TextAlignTypes})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetTextBaseline">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetTextBaseline(System.Nullable{EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetDirection">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetDirection(System.Nullable{EpicAkS.Blazor.Canvas.Enums.DirectionTypes})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetFillStyle">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetFillStyle(System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetFillStyleWithCanvasGradient(EpicAkS.Blazor.Canvas.Gradient)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetStrokeStyle">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetStrokeStyle(System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetStrokeStyleWithCanvasGradient(EpicAkS.Blazor.Canvas.Gradient)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetShadowBlur">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetShadowBlur(System.Nullable{System.Int32})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetShadowColor">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowColor</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetShadowColor(System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowColor</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetShadowOffsetX">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowOffsetX</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetShadowOffsetX(System.Nullable{System.Single})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowOffsetX</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetShadowOffsetY">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowOffsetY</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetShadowOffsetY(System.Nullable{System.Single})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowOffsetY</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.BeginPath">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.ClosePath">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/closePath</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.MoveTo(System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/moveTo</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.LineTo(System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.BezierCurveTo(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.QuadraticCurveTo(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Arc(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.ArcTo(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arcTo</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Ellipse(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/ellipse</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Rect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rect</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Fill">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Fill(EpicAkS.Blazor.Canvas.Enums.FillRuleTypes)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Fill(EpicAkS.Blazor.Canvas.Path2D)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Fill(EpicAkS.Blazor.Canvas.Path2D,EpicAkS.Blazor.Canvas.Enums.FillRuleTypes)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Stroke">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/stroke</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Stroke(EpicAkS.Blazor.Canvas.Path2D)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/stroke</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.DrawFocusIfNeeded(Microsoft.AspNetCore.Components.ElementReference)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.DrawFocusIfNeeded(Microsoft.AspNetCore.Components.ElementReference,EpicAkS.Blazor.Canvas.Path2D)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.ScrollPathIntoView">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scrollPathIntoView</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.ScrollPathIntoView(EpicAkS.Blazor.Canvas.Path2D)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scrollPathIntoView</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Clip">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clip</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Clip(EpicAkS.Blazor.Canvas.Enums.FillRuleTypes)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clip</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Clip(EpicAkS.Blazor.Canvas.Path2D)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clip</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Clip(EpicAkS.Blazor.Canvas.Path2D,EpicAkS.Blazor.Canvas.Enums.FillRuleTypes)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clip</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.IsPointInPath(System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.IsPointInPath(System.Int32,System.Int32,EpicAkS.Blazor.Canvas.Enums.FillRuleTypes)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.IsPointInPath(EpicAkS.Blazor.Canvas.Path2D,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.IsPointInPath(EpicAkS.Blazor.Canvas.Path2D,System.Int32,System.Int32,EpicAkS.Blazor.Canvas.Enums.FillRuleTypes)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.IsPointInStroke(System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInStroke</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.IsPointInStroke(EpicAkS.Blazor.Canvas.Path2D,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInStroke</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetCurrentTransform">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/currentTransform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetCurrentTransform">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/currentTransform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetTransform">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getTransform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Rotate(System.Double)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Scale(System.Double,System.Double)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Translate(System.Double,System.Double)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Transform(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetTransform">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetTransform(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetTransform(EpicAkS.Blazor.Canvas.DOMMatrix)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.ResetTransform">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/resetTransform</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetGlobalAlpha">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalAlpha</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetGlobalAlpha(System.Nullable{System.Double})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalAlpha</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetGlobalCompositeOperatio">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetGlobalCompositeOperation(System.Nullable{EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes})">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.DrawImage(Microsoft.AspNetCore.Components.ElementReference,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.DrawImage(Microsoft.AspNetCore.Components.ElementReference,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.DrawImage(Microsoft.AspNetCore.Components.ElementReference,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.PutImageData(EpicAkS.Blazor.Canvas.ImageData,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.PutImageData(EpicAkS.Blazor.Canvas.ImageData,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetImageSmoothingEnabled">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetImageSmoothingEnabled">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetImageSmoothingQuality">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingQuality</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetImageSmoothingQuality">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingQuality</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Save">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Restore">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/restore</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Canvas">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/canvas</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetContextAttributes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getContextAttributes</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.DOMMatrix">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.DOMMatrix.#ctor(EpicAkS.Blazor.Canvas.CanvasClass)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.DOMMatrix.CreateDOMMatrix">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.DOMMatrix.CreateDOMMatrix(System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.DOMMatrix.CreateDOMMatrix(System.Double[])">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.DirectionTypes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.DirectionTypes.ltr">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.DirectionTypes.rtl">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.DirectionTypes.inherit">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.FillRuleTypes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.FillRuleTypes.nonzero">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.FillRuleTypes.evenodd">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.SourceOver">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.SourceIn">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.SourceOut">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.SourceAtop">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.DestinationOver">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.DestinationIn">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.DestinationOut">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.DestinationAtop">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Lighter">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Copy">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Xor">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Multiply">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Screen">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Overlay">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Darken">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Lighten">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.ColorDodge">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.ColorBurn">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.HardLight">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.SoftLight">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Difference">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Exclusion">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Hue">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Saturation">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Color">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Luminosity">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.LineJoinTypes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.LineJoinTypes.bevel">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.LineJoinTypes.round">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.LineJoinTypes.miter">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes">
+            <summary>Custom</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes.Click">
+            <summary>Custom</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes.Down">
+            <summary>Custom</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes.Move">
+            <summary>Custom</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes.Out">
+            <summary>Custom</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes.Over">
+            <summary>Custom</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes.Up">
+            <summary>Custom</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.MouseEventTypes.Wheel">
+            <summary>Custom</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.TextAlignTypes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextAlignTypes.left">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextAlignTypes.right">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextAlignTypes.center">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextAlignTypes.start">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextAlignTypes.end">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes.top">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes.hanging">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes.middle">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes.alphabetic">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes.ideographic">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.TextBaselineTypes.bottom">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Gradient">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasGradient</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Gradient.#ctor(EpicAkS.Blazor.Canvas.CanvasClass)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Gradient.CreateConicGradient(System.Double,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createConicGradient</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Gradient.CreateLinearGradient(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createLinearGradient</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Gradient.CreateRadialGradient(System.Int32,System.Int32,System.Double,System.Int32,System.Int32,System.Double)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Gradient.CreatePattern">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createPattern</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Gradient.AddColorStop(System.Double,System.String)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasGradient/addColorStop</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.ImageData">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.ImageData.#ctor(EpicAkS.Blazor.Canvas.CanvasClass)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.ImageData.CreateImageData(System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createImageData</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.ImageData.CreateImageData(EpicAkS.Blazor.Canvas.ImageData)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createImageData</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.ImageData.GetImageData(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Path2D">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.#ctor(EpicAkS.Blazor.Canvas.CanvasClass)">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.CreatePath2D">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.AddPath(EpicAkS.Blazor.Canvas.Path2D)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D/addPath</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.ClosePath">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.MoveTo(System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.LineTo(System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.BezierCurveTo(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.QuadraticCurveTo(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.Arc(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.ArcTo(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.Ellipse(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Path2D.Rect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/Path2D#methods</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.ReturnVar">
+            <summary></summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.ReturnVar.VarId">
+            <summary></summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.ReturnVar.VarIdString">
+            <summary></summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.ReturnVar.PropertyNames">
+            <summary></summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.ReturnVar.#ctor">
+            <summary></summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Structs.CanvasWidthHeight">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.CanvasWidthHeight.Width">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.CanvasWidthHeight.Height">
+            <summary>Custom</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Structs.ContextAttributes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getContextAttributes</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.ContextAttributes.Alpha">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getContextAttributes</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.ContextAttributes.Desynchronized">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getContextAttributes</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Structs.Helpers">
+            <summary>Custom</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.Structs.Helpers.FillPropertyNames(System.Type)">
+            <summary>Custom</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Structs.MouseCoords">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.MouseCoords.MouseX">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.MouseCoords.MouseY">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.MouseCoords.ClientX">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.MouseCoords.ClientY">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.MouseCoords.OffsetLeft">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.MouseCoords.OffsetTop">
+            <summary>Custom</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.Structs.MouseCoords.MouseEventType">
+            <summary>Custom</summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.TextMetrics">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.Width">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/width</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.ActualBoundingBoxLeft">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/actualBoundingBoxLeft</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.ActualBoundingBoxRight">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/actualBoundingBoxRight</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.FontBoundingBoxAscent">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/fontBoundingBoxAscent</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.FontBoundingBoxDescent">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/fontBoundingBoxDescent</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.ActualBoundingBoxAscent">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/actualBoundingBoxAscent</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.ActualBoundingBoxDescent">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/actualBoundingBoxDescent</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.EmHeightAscent">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/emHeightAscent</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.EmHeightDescent">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/emHeightDescent</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.HangingBaseline">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/hangingBaseline</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.AlphabeticBaseline">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/alphabeticBaseline</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.TextMetrics.IdeographicBaseline">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/ideographicBaseline</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.TextMetrics.#ctor">
+            <summary></summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>EpicAkS.Blazor.Canvas.Components</PackageId>
+    <Title>Components to use with EpicAkS.Blazor.Canvas nuget package.</Title>
+    <Authors>Akshay Srinivasan</Authors>
+    <Description>Components for use with EpicAkS.Blazor.Canvas nuget package. This for example has the Canvas component that you can add in your Blazor Razor pages and then begin drawing with Canvas Element primitives.</Description>
+    <Copyright>2023 Akshay Srinivasan</Copyright>
+    <PackageProjectUrl>https://github.com/akshays2112/EpicAkS.Blazor.Canvas</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/akshays2112/EpicAkS.Blazor.Canvas/tree/main/EpicAkSBlazorCanvas.Components</RepositoryUrl>
+    <PackageTags>EpicAkS, Blazor, Canvas, Components, MAUI</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageIcon>EpicAkSLogo.png</PackageIcon>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\EpicAkSLogo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EpicAkS.Blazor.Canvas" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,46 @@
+﻿@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Components
+@inject IJSRuntime jsRuntime
+<div @ref="divCanvas" @onclick="@(evt => MouseEvent(evt, MouseEventTypes.Click))"
+     @onmousedown="@(evt => MouseEvent(evt, MouseEventTypes.Down))"
+     @onmousemove="@(evt => MouseEvent(evt, MouseEventTypes.Move))"
+     @onmouseout="@(evt => MouseEvent(evt, MouseEventTypes.Out))"
+     @onmouseover="@(evt => MouseEvent(evt, MouseEventTypes.Over))"
+     @onmouseup="@(evt => MouseEvent(evt, MouseEventTypes.Up))"
+     @onmousewheel="@(evt => MouseEvent(evt, MouseEventTypes.Wheel))"
+     style="border-style:none;margin:0 0 0 0;padding:0 0 0 0;overflow:hidden">
+</div>
+@code {
+    private ElementReference divCanvas;
+    private static bool renderOnce = false;
+
+    [Parameter]
+    public string? Id { get; set; }
+
+    [Parameter]
+    public Helpers.CanvasComponentInfo.CallOnRender? CallOnRender { get; set; }
+
+    private Helpers.CanvasComponentInfo CanvasComponentInfo = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (renderOnce) return;
+        renderOnce = true;
+        CanvasComponentInfo.Id = Id;
+        CanvasComponentInfo.Canvas = new(jsRuntime);
+        await CanvasComponentInfo.Canvas.CreateCanvas(divCanvas, "EpicAkS.Blazor.Canvas1");
+        await CanvasComponentInfo.Canvas.SetCurrentCanvas2DContext();
+        Helpers.CanvasComponentInfos.Add(CanvasComponentInfo);
+        if (CallOnRender is not null) await CallOnRender();
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task MouseEvent(MouseEventArgs eventArgs, MouseEventTypes mouseEventType)
+    {
+        if (CanvasComponentInfo.Canvas is not null)
+        {
+            MouseCoords mouseCoords = await CanvasComponentInfo.Canvas.GetMouseCoords(eventArgs, mouseEventType);
+            CanvasComponentInfo.CanvasComponentMouseEvents?.DoMouseEvent(mouseCoords, mouseEventType);
+        }
+    }
+}

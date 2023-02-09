@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>EpicAkS.Blazor.Canvas</Title>
+		<Description>This package will allow you to use the Canvas element via C# in Blazor code to draw whatever you want on the canvas element.</Description>
+		<Copyright>2023 Akshay Srinivasan</Copyright>
+		<PackageProjectUrl>https://github.com/akshays2112/EpicAkS.Blazor.Canvas</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/akshays2112/EpicAkS.Blazor.Canvas</RepositoryUrl>
+		<PackageTags>Blazor, Canvas, C#, .NET, MAUI</PackageTags>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageId>EpicAkS.Blazor.Canvas</PackageId>
+		<Authors>Akshay Srinivasan</Authors>
+		<PackageIcon>EpicAkSLogo.png</PackageIcon>
+		<Version>1.0.1</Version>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>C:\Users\efgjhejkr\OneDrive\akshays2112\EpicAkS.Blazor.Canvas\EpicAkS.Blazor.Canvas.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\EpicAkSLogo.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\LICENSE.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
+	</ItemGroup>
+
+</Project>
