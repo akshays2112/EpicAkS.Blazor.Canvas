@@ -1,4 +1,6 @@
-﻿namespace EpicAkS.Blazor.Canvas.Components
+﻿using EpicAkS.Blazor.Canvas.Structs;
+
+namespace EpicAkS.Blazor.Canvas.Components
 {
     public class Window
     {
@@ -12,9 +14,12 @@
 
         public KeyboardEvents KeyboardEvents { get; } = new KeyboardEvents();
 
-        public void DrawWindow()
-        {
+        public delegate Task AsyncWindowDraw();
+        public event AsyncWindowDraw? Draw;
 
+        public async Task DrawWindow()
+        {
+            if (Draw is not null) await Draw();
         }
 
         public bool IsPointInWindow(int x, int y)

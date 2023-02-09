@@ -22,7 +22,7 @@
     public string? Id { get; set; }
 
     [Parameter]
-    public Helpers.CanvasComponentInfo.CallOnRender? CallOnRender { get; set; }
+    public Window.AsyncWindowDraw? DrawWindow { get; set; }
 
     public Helpers.CanvasComponentInfo? CanvasComponentInfo = new();
 
@@ -30,8 +30,8 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (renderOnce) return;
-        renderOnce = true;
+        if(!renderOnce) renderOnce = true;
+        else return;
         if(CanvasComponentInfo is null) CanvasComponentInfo = new();
         if (Id is null) Id = Guid.NewGuid().ToString();
         CanvasComponentInfo.Id = Id;
@@ -40,8 +40,9 @@
         await CanvasComponentInfo.Canvas.SetCurrentCanvas2DContext();
         Helpers.CanvasComponentInfos.Add(CanvasComponentInfo);
         WindowManager = new(CanvasComponentInfo);
-        if (CallOnRender is not null) await CallOnRender();
+        WindowManager.RootWindow.Draw += DrawWindow;
         await base.OnAfterRenderAsync(firstRender);
+        await Render();
     }
 
     private async Task MouseEvent(MouseEventArgs eventArgs, MouseEventTypes mouseEventType)
@@ -58,6 +59,16 @@
         if (CanvasComponentInfo?.Canvas is not null)
         {
             await WindowManager.DoKeyboardEvents(keyboardEventType, eventArgs);
+        }
+    }
+
+    public async Task Render()
+    {
+        if (CanvasComponentInfo?.Canvas is not null && CanvasComponentInfo.Canvas.CanvasWidthHeightProp is not null)
+        {
+            await CanvasComponentInfo.Canvas.ClearRect(0, 0, CanvasComponentInfo.Canvas.CanvasWidthHeightProp.Value.Width, 
+                CanvasComponentInfo.Canvas.CanvasWidthHeightProp.Value.Height);
+            await WindowManager.DrawWindows();
         }
     }
 }

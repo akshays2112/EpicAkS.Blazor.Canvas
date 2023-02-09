@@ -51,11 +51,12 @@ namespace EpicAkS.Blazor.Canvas.Components
             }
         }
 
-        public void DrawWindows()
+        public async Task DrawWindows()
         {
             foreach (var window in Windows)
             {
-                window.DrawWindow();
+                if(window is not null)
+                    await window.DrawWindow();
             }
         }
 
