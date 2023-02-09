@@ -61,6 +61,8 @@ namespace EpicAkS.Blazor.Canvas
                 coords.ClientY = eventArgs.ClientY;
                 coords.MouseX = coords.MouseX;
                 coords.MouseY = coords.MouseY;
+                coords.OffsetLeft = eventArgs.OffsetX; 
+                coords.OffsetTop = eventArgs.OffsetY;
                 coords.MouseEventType = mouseEventType;
                 return coords;
             }

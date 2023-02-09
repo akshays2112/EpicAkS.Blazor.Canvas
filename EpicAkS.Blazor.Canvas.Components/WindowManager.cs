@@ -75,7 +75,7 @@ namespace EpicAkS.Blazor.Canvas.Components
 
         public async Task DoMouseEvents(MouseCoords mouseCoords, MouseEventTypes mouseEventTypes)
         {
-            var window = GetWindowAt((int)mouseCoords.MouseX, (int)mouseCoords.MouseY);
+            var window = GetWindowAt((int)mouseCoords.ClientX, (int)mouseCoords.ClientY);
             if (window is not null)
             {
                 BringToFront(window);

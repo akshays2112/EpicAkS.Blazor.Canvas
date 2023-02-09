@@ -2,7 +2,7 @@
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.Components
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
-<CanvasComponent @ref="canvasComponent" Id="@Id" CallOnRender="@InitDraw"></CanvasComponent>
+<CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow"></CanvasComponent>
 @code {
     string Id = Guid.NewGuid().ToString();
     private CanvasComponent canvasComponent;
@@ -10,7 +10,7 @@
     private async Task MyMouseClick(MouseCoords mouseCoords)
     {
         if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) 
-            await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.ClientX, (int)mouseCoords.ClientY, 200, 200);
+            await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, 200, 200);
     }
 
     private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
@@ -19,7 +19,7 @@
             await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect(100, 100, 200, 200);
     }
 
-    private async Task InitDraw()
+    private async Task DrawWindow()
     {
         CanvasComponentInfo canvasComponentInfo = EpicAkS.Blazor.Canvas.Components.Helpers.GetCanvasComponentInfoByIdGuid(Id);
         if (canvasComponent is not null)

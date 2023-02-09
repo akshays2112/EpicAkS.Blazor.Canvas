@@ -2,6 +2,16 @@ window.epicAkSHelperFunctions = {
     ctxByCanvasId: [],
     currentCtx: null,
     varsToHold: [],
+    //resizeCanvas: function (canvasId) {
+    //    var canvas = document.getElementById(canvasId);
+    //    canvas.width = window.innerWidth;
+    //    canvas.height = window.innerHeight;
+
+    //    window.onresize = function () {
+    //        canvas.width = window.innerWidth;
+    //        canvas.height = window.innerHeight;
+    //    }
+    //},
     getMouseXY: function (clientX, clientY) {
         if(!this.currentCtx) return;
         var rect = this.currentCtx.canvas.getBoundingClientRect();
@@ -23,8 +33,8 @@ window.epicAkSHelperFunctions = {
         }
 
         let canvas = document.createElement('CANVAS');
-        let width = document.documentElement.clientWidth;
-        let height = document.documentElement.clientHeight;
+        let width = document.documentElement.clientWidth; //window.innerWidth; 
+        let height = document.documentElement.clientHeight; //window.innerHeight;
         elDiv.setAttribute('width', width);
         elDiv.setAttribute('height', height);
         canvas.setAttribute('id', canvasId);
@@ -42,8 +52,8 @@ window.epicAkSHelperFunctions = {
         }
 
         let canvas = document.createElement('CANVAS');
-        let width = document.documentElement.clientWidth;
-        let height = document.documentElement.clientHeight;
+        let width = window.innerWidth; //document.documentElement.clientWidth;
+        let height = window.innerHeight; //document.documentElement.clientHeight;
         elDiv.setAttribute('width', width);
         elDiv.setAttribute('height', height);
         canvas.setAttribute('id', canvasId);

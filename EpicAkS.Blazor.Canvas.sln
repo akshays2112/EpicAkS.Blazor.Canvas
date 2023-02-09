@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpicAkSTestBlazorApp", "Epi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpicAkS.Blazor.Canvas.Components", "EpicAkS.Blazor.Canvas.Components\EpicAkS.Blazor.Canvas.Components.csproj", "{3FFE22DF-673C-4E56-966A-CED3D28CF745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicAkSTestMAUIBlazorApp", "EpicAkSTestMAUIBlazorApp\EpicAkSTestMAUIBlazorApp.csproj", "{872DBF68-8C33-4CB4-9000-5BA23AFDCF2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpicAkSTestMAUIBlazorApp", "EpicAkSTestMAUIBlazorApp\EpicAkSTestMAUIBlazorApp.csproj", "{872DBF68-8C33-4CB4-9000-5BA23AFDCF2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicAkSTestBlazorWebAssembly", "EpicAkSTestBlazorWebAssembly\EpicAkSTestBlazorWebAssembly.csproj", "{D92EB31A-3B60-45AE-8428-F9CC38AE7643}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{872DBF68-8C33-4CB4-9000-5BA23AFDCF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{872DBF68-8C33-4CB4-9000-5BA23AFDCF2B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{872DBF68-8C33-4CB4-9000-5BA23AFDCF2B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D92EB31A-3B60-45AE-8428-F9CC38AE7643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92EB31A-3B60-45AE-8428-F9CC38AE7643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92EB31A-3B60-45AE-8428-F9CC38AE7643}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92EB31A-3B60-45AE-8428-F9CC38AE7643}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

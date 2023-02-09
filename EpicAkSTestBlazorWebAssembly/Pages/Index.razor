@@ -1,25 +1,21 @@
 ﻿@page "/"
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.Components
-@using EpicAkS.Blazor.Canvas.Components
-@using EpicAkS.Blazor.Canvas.Structs
-@using EpicAkS.Blazor.Canvas.Enums
-@using EpicAkS.Blazor.Canvas
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow"></CanvasComponent>
 @code {
-    private string Id = Guid.NewGuid().ToString();
+    string Id = Guid.NewGuid().ToString();
     private CanvasComponent? canvasComponent;
 
     private async Task MyMouseClick(MouseCoords mouseCoords)
     {
-        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) 
+        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null)
             await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, 200, 200);
     }
 
-    private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs eventArgs)
+    private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
     {
-        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) 
+        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null)
             await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect(100, 100, 200, 200);
     }
 
@@ -41,7 +37,7 @@
             await canvas.FillRect(10, 10, 100, 100);
 
             //Testing variable logic
-            TextMetrics textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics("akshay");
+            TextMetrics? textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics("akshay");
             TextMetrics? textMetrics2 = null;
             if (textMetrics is not null)
                 textMetrics2 = await canvas.GetTextMetric(textMetrics);
