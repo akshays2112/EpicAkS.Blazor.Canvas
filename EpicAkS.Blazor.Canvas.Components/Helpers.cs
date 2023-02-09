@@ -8,8 +8,6 @@ public static class Helpers
 
         public CanvasClass? Canvas { get; set; }
 
-        public MouseEvents CanvasComponentMouseEvents { get; set; } = new();
-
         public delegate Task CallOnRender();
     }
 

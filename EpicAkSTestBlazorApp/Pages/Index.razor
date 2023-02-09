@@ -1,66 +1,72 @@
 ﻿@page "/"
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.Components
-<CanvasComponent Id="@Id" CallOnRender="@InitDraw"></CanvasComponent>
+@using EpicAkS.Blazor.Canvas.Components
+@using EpicAkS.Blazor.Canvas.Structs
+@using EpicAkS.Blazor.Canvas.Enums
+@using EpicAkS.Blazor.Canvas
+@using static EpicAkS.Blazor.Canvas.Components.Helpers;
+<CanvasComponent @ref="canvasComponent" Id="@Id" CallOnRender="@InitDraw"></CanvasComponent>
 @code {
     string Id = Guid.NewGuid().ToString();
-    EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo? CanvasComponentInfo;
+    private CanvasComponent? canvasComponent;
 
     private async Task MyMouseClick(MouseCoords mouseCoords)
     {
-        if (CanvasComponentInfo?.Canvas is not null) await CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.MouseX, (int)mouseCoords.MouseY, 200, 200);
+        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.ClientX, (int)mouseCoords.ClientY, 200, 200);
     }
 
     private async Task InitDraw()
     {
-        CanvasComponentInfo = EpicAkS.Blazor.Canvas.Components.Helpers.GetCanvasComponentInfoByIdGuid(Id);
-        if (CanvasComponentInfo is not null) CanvasComponentInfo.CanvasComponentMouseEvents.MouseClick += MyMouseClick;
-        if (CanvasComponentInfo?.Canvas is not null)
+        CanvasComponentInfo? canvasComponentInfo = EpicAkS.Blazor.Canvas.Components.Helpers.GetCanvasComponentInfoByIdGuid(Id);
+        if (canvasComponent is not null) canvasComponent.WindowManager.RootWindow.MouseEvents.MouseClick += MyMouseClick;
+        if (canvasComponentInfo?.Canvas is not null)
         {
-            await CanvasComponentInfo.Canvas.ClearRect(0, 0, CanvasComponentInfo.Canvas.CanvasWidthHeightProp?.Width ?? 100, 
-                CanvasComponentInfo.Canvas.CanvasWidthHeightProp?.Height ?? 100);
+            CanvasClass canvas = canvasComponentInfo.Canvas;
+            await canvas.ClearRect(0, 0, canvas.CanvasWidthHeightProp?.Width ?? 100,
+                canvas.CanvasWidthHeightProp?.Height ?? 100);
 
-            await CanvasComponentInfo.Canvas.SetFillStyle("rgba(255, 165, 0, 0.25)");
-            await CanvasComponentInfo.Canvas.FillRect(10, 10, 100, 100);
+            await canvas.SetFillStyle("rgba(255, 165, 0, 0.25)");
+            await canvas.FillRect(10, 10, 100, 100);
 
             //Testing variable logic
-            TextMetrics? textMetrics = await CanvasComponentInfo.Canvas.MeasureTextAndReturnNewTextMetrics("akshay");
+            TextMetrics textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics("akshay");
             TextMetrics? textMetrics2 = null;
             if (textMetrics is not null)
-                textMetrics2 = await CanvasComponentInfo.Canvas.GetTextMetric(textMetrics);
+                textMetrics2 = await canvas.GetTextMetric(textMetrics);
             TextMetrics? textMetrics3;
             if (textMetrics2 is not null)
-                textMetrics3 = await CanvasComponentInfo.Canvas.GetTextMetric(textMetrics2);
+                textMetrics3 = await canvas.GetTextMetric(textMetrics2);
 
             //Testing enum logic
-            await CanvasComponentInfo.Canvas.SetLineWidth(20);
-            await CanvasComponentInfo.Canvas.SetLineJoin(LineJoinTypes.round);
-            if (await CanvasComponentInfo.Canvas.GetLineJoin() == LineJoinTypes.round)
+            await canvas.SetLineWidth(20);
+            await canvas.SetLineJoin(LineJoinTypes.round);
+            if (await canvas.GetLineJoin() == LineJoinTypes.round)
             {
-                await CanvasComponentInfo.Canvas.BeginPath();
-                await CanvasComponentInfo.Canvas.MoveTo(220, 20);
-                await CanvasComponentInfo.Canvas.LineTo(390, 100);
-                await CanvasComponentInfo.Canvas.LineTo(480, 20);
-                await CanvasComponentInfo.Canvas.LineTo(480, 150);
-                await CanvasComponentInfo.Canvas.Stroke();
+                await canvas.BeginPath();
+                await canvas.MoveTo(220, 20);
+                await canvas.LineTo(390, 100);
+                await canvas.LineTo(480, 20);
+                await canvas.LineTo(480, 150);
+                await canvas.Stroke();
             }
 
             //Testing class type vars ex. CanvasGradient
-            Gradient gradient = new(CanvasComponentInfo.Canvas);
+            Gradient gradient = new(canvas);
             await gradient.CreateConicGradient(0, 120, 320);
             await gradient.AddColorStop(0, "red");
             await gradient.AddColorStop(0.25, "orange");
             await gradient.AddColorStop(0.5, "yellow");
             await gradient.AddColorStop(0.75, "green");
             await gradient.AddColorStop(1, "blue");
-            await CanvasComponentInfo.Canvas.SetFillStyleWithCanvasGradient(gradient);
-            await CanvasComponentInfo.Canvas.FillRect(20, 220, 200, 200);
+            await canvas.SetFillStyleWithCanvasGradient(gradient);
+            await canvas.FillRect(20, 220, 200, 200);
 
-            Path2D path2D = new(CanvasComponentInfo.Canvas);
+            Path2D path2D = new(canvas);
             await path2D.CreatePath2D();
             await path2D.Rect(300, 300, 100, 100);
-            await CanvasComponentInfo.Canvas.SetFillStyle("magenta");
-            await CanvasComponentInfo.Canvas.Fill(path2D);
+            await canvas.SetFillStyle("magenta");
+            await canvas.Fill(path2D);
         }
     }
 }

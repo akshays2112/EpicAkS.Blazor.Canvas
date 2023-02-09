@@ -50,8 +50,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="EpicAkS.Blazor.Canvas.Components" Version="1.0.2" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EpicAkS.Blazor.Canvas.Components\EpicAkS.Blazor.Canvas.Components.csproj" />
     </ItemGroup>
 
 </Project>

@@ -44,8 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EpicAkS.Blazor.Canvas" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EpicAkS.Blazor.Canvas\EpicAkS.Blazor.Canvas.csproj" />
   </ItemGroup>
 
 </Project>
