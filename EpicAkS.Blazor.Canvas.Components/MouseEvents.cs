@@ -5,51 +5,51 @@ namespace EpicAkS.Blazor.Canvas.Components;
 
 public class MouseEvents
 {
-    public delegate void mouseClick(MouseCoords mouseCoords);
-    public event mouseClick? MouseClick;
+    public delegate Task AsyncMouseClick(MouseCoords mouseCoords);
+    public event AsyncMouseClick? MouseClick;
 
-    public delegate void mouseDown(MouseCoords mouseCoords);
-    public event mouseDown? MouseDown;
+    public delegate Task AsyncMouseDown(MouseCoords mouseCoords);
+    public event AsyncMouseDown? MouseDown;
 
-    public delegate void mouseMove(MouseCoords mouseCoords);
-    public event mouseMove? MouseMove;
+    public delegate Task AsyncMouseMove(MouseCoords mouseCoords);
+    public event AsyncMouseMove? MouseMove;
 
-    public delegate void mouseOut(MouseCoords mouseCoords);
-    public event mouseOut? MouseOut;
+    public delegate Task AsyncMouseOut(MouseCoords mouseCoords);
+    public event AsyncMouseOut? MouseOut;
 
-    public delegate void mouseOver(MouseCoords mouseCoords);
-    public event mouseOver? MouseOver;
+    public delegate Task AsyncMouseOver(MouseCoords mouseCoords);
+    public event AsyncMouseOver? MouseOver;
 
-    public delegate void mouseUp(MouseCoords mouseCoords);
-    public event mouseUp? MouseUp;
+    public delegate Task AsyncMouseUp(MouseCoords mouseCoords);
+    public event AsyncMouseUp? MouseUp;
 
-    public delegate void mouseWheel(MouseCoords mouseCoords);
-    public event mouseWheel? MouseWheel;
+    public delegate Task AsyncMouseWheel(MouseCoords mouseCoords);
+    public event AsyncMouseWheel? MouseWheel;
 
-    public void DoMouseEvent(MouseCoords mouseCoords, MouseEventTypes mouseEventType)
+    public async Task DoMouseEvent(MouseCoords mouseCoords, MouseEventTypes mouseEventType)
     {
         switch (mouseEventType)
         {
             case MouseEventTypes.Click:
-                if (MouseClick is not null) MouseClick(mouseCoords);
+                if (MouseClick is not null) await MouseClick(mouseCoords);
                 break;
             case MouseEventTypes.Down:
-                if (MouseDown is not null) MouseDown(mouseCoords);
+                if (MouseDown is not null) await MouseDown(mouseCoords);
                 break;
             case MouseEventTypes.Move:
-                if (MouseMove is not null) MouseMove(mouseCoords);
+                if (MouseMove is not null) await MouseMove(mouseCoords);
                 break;
             case MouseEventTypes.Out:
-                if (MouseOut is not null) MouseOut(mouseCoords);
+                if (MouseOut is not null) await MouseOut(mouseCoords);
                 break;
             case MouseEventTypes.Over:
-                if (MouseOver is not null) MouseOver(mouseCoords);
+                if (MouseOver is not null) await MouseOver(mouseCoords);
                 break;
             case MouseEventTypes.Up:
-                if (MouseUp is not null) MouseUp(mouseCoords);
+                if (MouseUp is not null) await MouseUp(mouseCoords);
                 break;
             case MouseEventTypes.Wheel:
-                if (MouseWheel is not null) MouseWheel(mouseCoords);
+                if (MouseWheel is not null) await MouseWheel(mouseCoords);
                 break;
         }
     }

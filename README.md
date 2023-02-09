@@ -1,2 +1,2 @@
-# EpicAks.Blazor.Canvas
+# EpicAks.Blazor.Canvas.Components
 

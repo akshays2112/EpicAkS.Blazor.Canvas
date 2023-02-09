@@ -1,14 +1,18 @@
 ﻿@page "/"
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.Components
+@using EpicAkS.Blazor.Canvas.Components
+@using EpicAkS.Blazor.Canvas.Structs
+@using EpicAkS.Blazor.Canvas.Enums
+@using EpicAkS.Blazor.Canvas
 <CanvasComponent Id="@Id" CallOnRender="@InitDraw"></CanvasComponent>
 @code {
     string Id = Guid.NewGuid().ToString();
-    EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo? CanvasComponentInfo;
+    EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo CanvasComponentInfo;
 
     private async Task MyMouseClick(MouseCoords mouseCoords)
     {
-        if (CanvasComponentInfo?.Canvas is not null) await CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.MouseX, (int)mouseCoords.MouseY, 200, 200);
+        if (CanvasComponentInfo?.Canvas is not null) await CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.ClientX, (int)mouseCoords.ClientY, 200, 200);
     }
 
     private async Task InitDraw()
@@ -17,18 +21,18 @@
         if (CanvasComponentInfo is not null) CanvasComponentInfo.CanvasComponentMouseEvents.MouseClick += MyMouseClick;
         if (CanvasComponentInfo?.Canvas is not null)
         {
-            await CanvasComponentInfo.Canvas.ClearRect(0, 0, CanvasComponentInfo.Canvas.CanvasWidthHeightProp?.Width ?? 100, 
+            await CanvasComponentInfo.Canvas.ClearRect(0, 0, CanvasComponentInfo.Canvas.CanvasWidthHeightProp?.Width ?? 100,
                 CanvasComponentInfo.Canvas.CanvasWidthHeightProp?.Height ?? 100);
 
             await CanvasComponentInfo.Canvas.SetFillStyle("rgba(255, 165, 0, 0.25)");
             await CanvasComponentInfo.Canvas.FillRect(10, 10, 100, 100);
 
             //Testing variable logic
-            TextMetrics? textMetrics = await CanvasComponentInfo.Canvas.MeasureTextAndReturnNewTextMetrics("akshay");
-            TextMetrics? textMetrics2 = null;
+            TextMetrics textMetrics = await CanvasComponentInfo.Canvas.MeasureTextAndReturnNewTextMetrics("akshay");
+            TextMetrics textMetrics2 = null;
             if (textMetrics is not null)
                 textMetrics2 = await CanvasComponentInfo.Canvas.GetTextMetric(textMetrics);
-            TextMetrics? textMetrics3;
+            TextMetrics textMetrics3;
             if (textMetrics2 is not null)
                 textMetrics3 = await CanvasComponentInfo.Canvas.GetTextMetric(textMetrics2);
 
