@@ -12,10 +12,19 @@
         if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.ClientX, (int)mouseCoords.ClientY, 200, 200);
     }
 
+    private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, string key)
+    {
+        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null) await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect(100, 100, 200, 200);
+    }
+
     private async Task InitDraw()
     {
         CanvasComponentInfo canvasComponentInfo = EpicAkS.Blazor.Canvas.Components.Helpers.GetCanvasComponentInfoByIdGuid(Id);
-        if (canvasComponent is not null) canvasComponent.WindowManager.RootWindow.MouseEvents.MouseClick += MyMouseClick;
+        if (canvasComponent is not null)
+        {
+            canvasComponent.WindowManager.RootWindow.MouseEvents.MouseClick += MyMouseClick;
+            canvasComponent.WindowManager.RootWindow.KeyboardEvents.KeyPress += MyKeyPress;
+        }
         if (canvasComponentInfo?.Canvas is not null)
         {
             CanvasClass canvas = canvasComponentInfo.Canvas;

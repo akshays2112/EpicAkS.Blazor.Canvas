@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EpicAkS.Blazor.Canvas.Components
+﻿namespace EpicAkS.Blazor.Canvas.Components
 {
     public class Window
     {
@@ -15,6 +9,13 @@ namespace EpicAkS.Blazor.Canvas.Components
         public int Height { get; set; }
 
         public MouseEvents MouseEvents { get; } = new MouseEvents();
+
+        public KeyboardEvents KeyboardEvents { get; } = new KeyboardEvents();
+
+        public void DrawWindow()
+        {
+
+        }
 
         public bool IsPointInWindow(int x, int y)
         {

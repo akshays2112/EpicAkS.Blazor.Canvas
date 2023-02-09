@@ -454,6 +454,24 @@
         <member name="F:EpicAkS.Blazor.Canvas.Enums.GlobalCompositeOperationTypes.Luminosity">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation</summary>
         </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.KeyboardEventTypes">
+            <summary>The different types of keyboard events</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.KeyboardEventTypes.KeyDown">
+            <summary>
+            The key is down.
+            </summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.KeyboardEventTypes.KeyUp">
+            <summary>
+            The key is up.
+            </summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.KeyboardEventTypes.KeyPress">
+            <summary>
+            The key was pressed.
+            </summary>
+        </member>
         <member name="T:EpicAkS.Blazor.Canvas.Enums.LineJoinTypes">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
         </member>

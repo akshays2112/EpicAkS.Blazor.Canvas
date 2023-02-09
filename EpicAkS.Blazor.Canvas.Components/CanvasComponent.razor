@@ -8,6 +8,10 @@
      @onmouseover="@(evt => MouseEvent(evt, MouseEventTypes.Over))"
      @onmouseup="@(evt => MouseEvent(evt, MouseEventTypes.Up))"
      @onmousewheel="@(evt => MouseEvent(evt, MouseEventTypes.Wheel))"
+     @onkeydown="(evt => KeyboardEvent(evt, KeyboardEventTypes.KeyDown))"
+     @onkeyup="(evt => KeyboardEvent(evt, KeyboardEventTypes.KeyUp))"
+     @onkeypress="(evt => KeyboardEvent(evt, KeyboardEventTypes.KeyPress))"
+     tabindex="0"
      style="border-style:none;margin:0 0 0 0;padding:0 0 0 0;overflow:hidden">
 </div>
 @code {
@@ -46,6 +50,14 @@
         {
             MouseCoords mouseCoords = await CanvasComponentInfo.Canvas.GetMouseCoords(eventArgs, mouseEventType);
             await WindowManager.DoMouseEvents(mouseCoords, mouseEventType);
+        }
+    }
+
+    private async Task KeyboardEvent(KeyboardEventArgs eventArgs, KeyboardEventTypes keyboardEventType)
+    {
+        if (CanvasComponentInfo?.Canvas is not null)
+        {
+            await WindowManager.DoKeyboardEvents(keyboardEventType, eventArgs.Key);
         }
     }
 }
