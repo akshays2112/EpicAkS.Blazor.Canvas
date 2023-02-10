@@ -124,6 +124,9 @@
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetFillStyle">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
         </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetFillStyleForGradient">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
+        </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetFillStyle(System.String)">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
         </member>
@@ -131,6 +134,9 @@
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
         </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetStrokeStyle">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
+        </member>
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetStrokeStyleForGradient">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
         </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetStrokeStyle(System.String)">
@@ -471,6 +477,9 @@
             <summary>
             The key was pressed.
             </summary>
+        </member>
+        <member name="T:EpicAkS.Blazor.Canvas.Enums.LineCapTypes">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
         </member>
         <member name="F:EpicAkS.Blazor.Canvas.Enums.LineCapTypes.butt">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>

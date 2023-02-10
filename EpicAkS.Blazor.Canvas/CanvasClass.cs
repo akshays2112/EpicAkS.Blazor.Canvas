@@ -243,8 +243,8 @@ namespace EpicAkS.Blazor.Canvas
         #region Text styles
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font</summary>
-        public async Task<double?> GetFont() =>
-            await JsInterops.GetCanvas2DContextProperty<double?>("font");
+        public async Task<string?> GetFont() =>
+            await JsInterops.GetCanvas2DContextProperty<string?>("font");
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font</summary>
         public async Task SetFont(string? font) =>
@@ -404,6 +404,9 @@ namespace EpicAkS.Blazor.Canvas
             await JsInterops.GetCanvas2DContextProperty<string?>("fillStyle");
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
+        public void GetFillStyleForGradient() => throw new NotImplementedException();
+
+        ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</summary>
         public async Task SetFillStyle(string? fillStyle) =>
             await JsInterops.SetCanvas2DContextProperty("fillStyle", fillStyle);
 
@@ -414,6 +417,9 @@ namespace EpicAkS.Blazor.Canvas
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
         public async Task<string?> GetStrokeStyle() =>
             await JsInterops.GetCanvas2DContextProperty<string?>("strokeStyle");
+
+        ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
+        public void GetStrokeStyleForGradient() => throw new NotImplementedException();
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle</summary>
         public async Task SetStrokeStyle(string? strokeStyle) =>

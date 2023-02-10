@@ -96,6 +96,74 @@
             double? lineDashOffset1 = await canvas.GetLineDashOffset();
             await canvas.FillText($"LineDashOffset: {lineDashOffset1}", 70, 500);
             #endregion
+
+            #region Text styles
+            string? fontString = await canvas.GetFont();
+            await canvas.FillText($"Font: {fontString}", 400, 20);
+            await canvas.SetFont("10px Arial");
+            string? fontString1 = await canvas.GetFont();
+            await canvas.FillText($"Font: {fontString1}", 400, 50);
+            TextAlignTypes? textAlign = await canvas.GetTextAlign();
+            await canvas.FillText($"TextAlign: {textAlign}", 400, 80);
+            await canvas.SetTextAlign(TextAlignTypes.left);
+            TextAlignTypes? textAlign1 = await canvas.GetTextAlign();
+            await canvas.FillText($"TextAlign: {textAlign1}", 400, 110);
+            TextBaselineTypes? textBaseline = await canvas.GetTextBaseline();
+            await canvas.FillText($"TextBaseline: {textBaseline}", 400, 140);
+            await canvas.SetTextBaseline(TextBaselineTypes.bottom);
+            TextBaselineTypes? textBaseline1 = await canvas.GetTextBaseline();
+            await canvas.FillText($"TextBaseline: {textBaseline1}", 400, 170);
+            await canvas.SetTextBaseline(textBaseline);
+            DirectionTypes? directionType = await canvas.GetDirection();
+            await canvas.FillText($"Direction: {directionType}", 400, 200);
+            await canvas.SetDirection(DirectionTypes.ltr);
+            DirectionTypes? directionType1 = await canvas.GetDirection();
+            await canvas.FillText($"Direction: {directionType1}", 400, 230);
+            #endregion
+
+            #region Fill and stroke styles
+            Gradient? gradient = new Gradient(canvas);
+            await gradient.CreateConicGradient(45, 400, 260);
+            await gradient.AddColorStop(0, "red");
+            await gradient.AddColorStop(0.5, "green");
+            await gradient.AddColorStop(1, "blue");
+            await canvas.SetFillStyleWithCanvasGradient(gradient);
+            await canvas.FillText($"Gradient set for fill style.", 400, 260);
+            await canvas.SetFillStyle("red");
+            string? fillStyle1 = await canvas.GetFillStyle();
+            await canvas.FillText($"FillStyle: {fillStyle1}", 400, 290);
+            await canvas.SetStrokeStyleWithCanvasGradient(gradient);
+            await canvas.FillText($"Gradient set for stroke style.", 400, 320);
+            await canvas.SetStrokeStyle("green");
+            string? strokeStyle1 = await canvas.GetStrokeStyle();
+            await canvas.FillText($"StrokeStyle: {strokeStyle1}", 400, 350);
+            #endregion
+
+            #region Shadows
+            int? shadowBlur = await canvas.GetShadowBlur();
+            await canvas.FillText($"ShadowBlur: {shadowBlur}", 400, 380);
+            await canvas.SetShadowBlur(5);
+            int? shadowBlur1 = await canvas.GetShadowBlur();
+            await canvas.FillText($"ShadowBlur: {shadowBlur1}", 400, 410);
+            string? shadowColor = await canvas.GetShadowColor();
+            await canvas.FillText($"ShadowColor: {shadowColor}", 400, 440);
+            await canvas.SetShadowColor("blue");
+            string? shadowColor1 = await canvas.GetShadowColor();
+            await canvas.FillText($"ShadowColor: {shadowColor1}", 400, 470);
+            double? shadowOffsetX = await canvas.GetShadowOffsetX();
+            await canvas.FillText($"ShadowOffsetX: {shadowOffsetX}", 400, 500);
+            await canvas.SetShadowOffsetX(5);
+            double? shadowOffsetX1 = await canvas.GetShadowOffsetX();
+            await canvas.FillText($"ShadowOffsetX: {shadowOffsetX1}", 400, 530);
+            double? shadowOffsetY = await canvas.GetShadowOffsetY();
+            await canvas.FillText($"ShadowOffsetY: {shadowOffsetY}", 400, 560);
+            await canvas.SetShadowOffsetY(5);
+            double? shadowOffsetY1 = await canvas.GetShadowOffsetY();
+            await canvas.FillText($"ShadowOffsetY: {shadowOffsetY1}", 400, 590);
+            await canvas.SetShadowColor(shadowColor);
+            await canvas.SetShadowOffsetX((float?)shadowOffsetX);
+            await canvas.SetShadowOffsetY((float?)shadowOffsetY);
+            #endregion
         }
     }
 }
