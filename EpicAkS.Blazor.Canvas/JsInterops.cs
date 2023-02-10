@@ -240,8 +240,7 @@ namespace EpicAkS.Blazor.Canvas
             {
                 string json = await JSRuntime.InvokeAsync<string>(
                     "window.epicAkSHelperFunctions.callCanvas2DContextFunctionWithParametersWithVarToHoldWithReturn",
-                    new object[] { ((ReturnVar)obj).VarIdString, functionName, functionParameters,
-                        ((ReturnVar)obj).PropertyNames });
+                    new object[] { obj.VarIdString, functionName, functionParameters, obj.PropertyNames });
                 obj = JsonSerializer.Deserialize<T>(json) ?? obj;
             }
             return obj;

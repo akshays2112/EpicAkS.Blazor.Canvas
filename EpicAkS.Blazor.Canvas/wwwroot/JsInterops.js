@@ -168,7 +168,8 @@ window.epicAkSHelperFunctions = {
         let retObj = {};
         retObj['varId'] = retObj['varIdString'] = varId;
         for (let i = 0; i < props.length; i++) {
-            retObj[props[i]] = varById[props[i]];
+            if (props[i] != 'varId' && props[i] != 'varIdString')
+                retObj[props[i]] = obj[varId][props[i]];
         }
         return JSON.stringify(retObj);
     },
@@ -180,7 +181,8 @@ window.epicAkSHelperFunctions = {
         let retObj = {};
         retObj['varId'] = retObj['varIdString'] = varId;
         for (let i = 0; i < props.length; i++) {
-            retObj[props[i]] = varById[props[i]];
+            if(props[i] != 'varId' && props[i] != 'varIdString')
+                retObj[props[i]] = obj[varId][props[i]]; //varById[props[i]];
         }
         return JSON.stringify(retObj);
     },

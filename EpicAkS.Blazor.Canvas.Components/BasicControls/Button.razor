@@ -8,13 +8,22 @@
     public int Y { get; set; }
 
     [Parameter]
-    public int Width { get; set; }
+    public int Width { get; set; } = 100;
 
     [Parameter]
-    public int Height { get; set; }
+    public int Height { get; set; } = 50;
 
     [Parameter]
     public string Text { get; set; } = "Button";
+
+    [Parameter]
+    public string TextColor { get; set; } = "white";
+
+    [Parameter]
+    public string TextFont { get; set; } = "20px serif";
+
+    [Parameter]
+    public int TextFontHeight { get; set; } = 20;
 
     [Parameter]
     public string? ButtonColor { get; set; } = "red";
@@ -41,7 +50,10 @@
         {
             await canvas.SetFillStyle(ButtonColor);
             await canvas.FillRect(X, Y, Width, Height);
-            await canvas.FillText(Text, X, Y);
+            await canvas.SetFillStyle(TextColor);
+            await canvas.SetFont(TextFont);
+            TextMetrics? textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics(Text);
+            await canvas.FillText(Text, X + ((Width - (int)textMetrics.Width) / 2), Y + Height - TextFontHeight);
         }
     }
 }

@@ -106,10 +106,10 @@ namespace EpicAkS.Blazor.Canvas
             await JsInterops.CallCanvas2DContextFunctionWithParameters("strokeText", new object[] { text, x, y, maxWidth });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText</summary>
-        public async Task<TextMetrics> MeasureTextAndReturnNewTextMetrics(string text)
+        public async Task<TextMetrics?> MeasureTextAndReturnNewTextMetrics(string text)
         {
-            TextMetrics textMetrics = new();
-            await JsInterops.CallCanvas2DContextFunctionWithParametersWithVarToHold(
+            TextMetrics? textMetrics = new();
+            textMetrics = await JsInterops.CallCanvas2DContextFunctionWithParametersWithVarToHoldWithReturn(
                 textMetrics, "measureText", new object[] { text });
             return textMetrics;
         }

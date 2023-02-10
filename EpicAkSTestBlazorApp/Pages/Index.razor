@@ -7,7 +7,7 @@
 @using EpicAkS.Blazor.Canvas
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="500" Y="500" Width="100" Height="50" Text="Akshay" ButtonColor="blue" CanvasComponent="@canvasComponent"
+    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="500" Width="100" Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
         MouseClick="@ButtonClick">
     </EpicAkS.Blazor.Canvas.Components.BasicControls.Button>
 </CanvasComponent>
@@ -44,13 +44,9 @@
             await canvas.FillRect(10, 10, 100, 100);
 
             //Testing variable logic
-            TextMetrics textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics("akshay");
-            TextMetrics? textMetrics2 = null;
-            if (textMetrics is not null)
-                textMetrics2 = await canvas.GetTextMetric(textMetrics);
-            TextMetrics? textMetrics3;
-            if (textMetrics2 is not null)
-                textMetrics3 = await canvas.GetTextMetric(textMetrics2);
+            TextMetrics? textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics("akshay");
+            TextMetrics textMetrics2 = await canvas.GetTextMetric(textMetrics);
+            TextMetrics textMetrics3 = await canvas.GetTextMetric(textMetrics2);
 
             //Testing enum logic
             await canvas.SetLineWidth(20);
