@@ -13,10 +13,14 @@
      @onkeypress="(evt => KeyboardEvent(evt, KeyboardEventTypes.KeyPress))"
      tabindex="0"
      style="border-style:none;margin:0 0 0 0;padding:0 0 0 0;">
+    @ChildContent
 </div>
 @code {
     private ElementReference divCanvas;
     private static bool renderOnce = false;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null!;
 
     [Parameter]
     public string? Id { get; set; }
@@ -27,6 +31,13 @@
     public Helpers.CanvasComponentInfo? CanvasComponentInfo = new();
 
     public WindowManager WindowManager = null!;
+
+    protected override Task OnParametersSetAsync()
+    {
+        if(CanvasComponentInfo is not null)
+            WindowManager = new(CanvasComponentInfo);
+        return base.OnParametersSetAsync();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -40,7 +51,6 @@
         await CanvasComponentInfo.Canvas.SetCurrentCanvas2DContext();
         //await jsRuntime.InvokeVoidAsync("window.epicAkSHelperFunctions.resizeCanvas", $"{Id}");
         Helpers.CanvasComponentInfos.Add(CanvasComponentInfo);
-        WindowManager = new(CanvasComponentInfo);
         WindowManager.RootWindow.Draw += DrawWindow;
         await base.OnAfterRenderAsync(firstRender);
         await Render();

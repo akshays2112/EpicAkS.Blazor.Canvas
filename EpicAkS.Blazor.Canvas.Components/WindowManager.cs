@@ -56,7 +56,7 @@ namespace EpicAkS.Blazor.Canvas.Components
             foreach (var window in Windows)
             {
                 if(window is not null)
-                    await window.DrawWindow();
+                    await window.DrawWindow(CanvasComponentInfo);
             }
         }
 
@@ -76,7 +76,7 @@ namespace EpicAkS.Blazor.Canvas.Components
         public async Task DoMouseEvents(MouseCoords mouseCoords, MouseEventTypes mouseEventTypes)
         {
             var window = GetWindowAt((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop);
-            if (window is not null)
+            if (window is not null && window != RootWindow)
             {
                 BringToFront(window);
                 await window.MouseEvents.DoMouseEvent(mouseCoords, mouseEventTypes);

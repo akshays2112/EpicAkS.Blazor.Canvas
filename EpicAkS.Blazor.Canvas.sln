@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpicAkS.Blazor.Canvas.Compo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpicAkSTestMAUIBlazorApp", "EpicAkSTestMAUIBlazorApp\EpicAkSTestMAUIBlazorApp.csproj", "{872DBF68-8C33-4CB4-9000-5BA23AFDCF2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicAkSTestBlazorWebAssembly", "EpicAkSTestBlazorWebAssembly\EpicAkSTestBlazorWebAssembly.csproj", "{D92EB31A-3B60-45AE-8428-F9CC38AE7643}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpicAkSTestBlazorWebAssembly", "EpicAkSTestBlazorWebAssembly\EpicAkSTestBlazorWebAssembly.csproj", "{D92EB31A-3B60-45AE-8428-F9CC38AE7643}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

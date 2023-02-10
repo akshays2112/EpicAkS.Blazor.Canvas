@@ -20,7 +20,7 @@
 		<PackageId>EpicAkS.Blazor.Canvas</PackageId>
 		<Authors>Akshay Srinivasan</Authors>
 		<PackageIcon>EpicAkSLogo.png</PackageIcon>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
