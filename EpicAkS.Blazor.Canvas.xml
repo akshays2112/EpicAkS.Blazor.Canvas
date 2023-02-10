@@ -70,7 +70,7 @@
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineCap">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
         </member>
-        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineCap(System.Nullable{System.Double})">
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineCap(System.Nullable{EpicAkS.Blazor.Canvas.Enums.LineCapTypes})">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
         </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineJoin">
@@ -88,7 +88,7 @@
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineDash">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getLineDash</summary>
         </member>
-        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineDash(System.Int32[])">
+        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetLineDash(System.Nullable{System.Int32}[])">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash</summary>
         </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetLineDashOffset">
@@ -471,6 +471,15 @@
             <summary>
             The key was pressed.
             </summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.LineCapTypes.butt">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.LineCapTypes.round">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
+        </member>
+        <member name="F:EpicAkS.Blazor.Canvas.Enums.LineCapTypes.square">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
         </member>
         <member name="T:EpicAkS.Blazor.Canvas.Enums.LineJoinTypes">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>

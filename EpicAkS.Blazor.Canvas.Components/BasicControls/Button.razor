@@ -53,7 +53,8 @@
             await canvas.SetFillStyle(TextColor);
             await canvas.SetFont(TextFont);
             TextMetrics? textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics(Text);
-            await canvas.FillText(Text, X + ((Width - (int)textMetrics.Width) / 2), Y + Height - TextFontHeight);
+            if(textMetrics is not null)
+                await canvas.FillText(Text, X + ((Width - (int)textMetrics.Width) / 2), Y + Height - TextFontHeight);
         }
     }
 }

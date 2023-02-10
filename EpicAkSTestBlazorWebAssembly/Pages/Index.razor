@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Components
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="500" Width="100" Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
+    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="600" Width="100" Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
         MouseClick="@ButtonClick">
     </EpicAkS.Blazor.Canvas.Components.BasicControls.Button>
 </CanvasComponent>
@@ -23,9 +23,8 @@
             await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, 200, 200);
     }
 
-    private async Task DrawWindow(EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo canvasComponentInfo)
+    public async Task DrawWindow(CanvasComponentInfo canvasComponentInfo)
     {
-        //CanvasComponentInfo? canvasComponentInfo = EpicAkS.Blazor.Canvas.Components.Helpers.GetCanvasComponentInfoByIdGuid(Id);
         if (canvasComponent is not null)
         {
             canvasComponent.WindowManager.RootWindow.KeyboardEvents.KeyPress += MyKeyPress;
@@ -36,43 +35,63 @@
             await canvas.ClearRect(0, 0, canvas.CanvasWidthHeightProp?.Width ?? 100,
                 canvas.CanvasWidthHeightProp?.Height ?? 100);
 
-            await canvas.SetFillStyle("rgba(255, 165, 0, 0.25)");
-            await canvas.FillRect(10, 10, 100, 100);
+            #region Drawing Rectangles
+            await canvas.FillRect(10, 10, 50, 50);
+            await canvas.ClearRect(40, 40, 10, 10);
+            await canvas.StrokeRect(10, 70, 50, 50);
+            #endregion
 
-            //Testing variable logic
-            TextMetrics? textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics("akshay");
-            TextMetrics textMetrics2 = await canvas.GetTextMetric(textMetrics);
-            TextMetrics textMetrics3 = await canvas.GetTextMetric(textMetrics2);
-
-            //Testing enum logic
-            await canvas.SetLineWidth(20);
-            await canvas.SetLineJoin(LineJoinTypes.round);
-            if (await canvas.GetLineJoin() == LineJoinTypes.round)
+            #region Drawing Text
+            await canvas.FillText("MAUI", 70, 20);
+            await canvas.StrokeText("MAUI", 70, 50);
+            TextMetrics? textMetrics = await canvas.MeasureTextAndReturnNewTextMetrics("MAUI");
+            await canvas.FillText($"TextMetrics: {textMetrics?.Width}  VarId: {textMetrics?.VarIdString}", 70, 80);
+            if (textMetrics is not null)
             {
-                await canvas.BeginPath();
-                await canvas.MoveTo(220, 20);
-                await canvas.LineTo(390, 100);
-                await canvas.LineTo(480, 20);
-                await canvas.LineTo(480, 150);
-                await canvas.Stroke();
+                TextMetrics? textMetrics1 = await canvas.GetTextMetric(textMetrics);
+                await canvas.FillText($"TextMetrics: {textMetrics?.Width}  VarId: {textMetrics1?.VarIdString}", 70, 110);
             }
+            TextMetrics? textMetrics2 = await canvas.MeasureTextAndReturnNewFilledTextMetrics("MAUI");
+            if (textMetrics2 is not null)
+            {
+                await canvas.FillText($"TextMetrics: {textMetrics2?.Width}  VarId: {textMetrics2?.VarIdString}", 70, 140);
+            }
+            #endregion
 
-            //Testing class type vars ex. CanvasGradient
-            Gradient gradient = new(canvas);
-            await gradient.CreateConicGradient(0, 120, 320);
-            await gradient.AddColorStop(0, "red");
-            await gradient.AddColorStop(0.25, "orange");
-            await gradient.AddColorStop(0.5, "yellow");
-            await gradient.AddColorStop(0.75, "green");
-            await gradient.AddColorStop(1, "blue");
-            await canvas.SetFillStyleWithCanvasGradient(gradient);
-            await canvas.FillRect(20, 220, 200, 200);
-
-            Path2D path2D = new(canvas);
-            await path2D.CreatePath2D();
-            await path2D.Rect(300, 300, 100, 100);
-            await canvas.SetFillStyle("magenta");
-            await canvas.Fill(path2D);
+            #region Line styles
+            double? lineWidth = await canvas.GetLineWidth();
+            await canvas.FillText($"LineWidth: {lineWidth}", 70, 170);
+            await canvas.SetLineWidth(5);
+            double? lineWidth1 = await canvas.GetLineWidth();
+            await canvas.FillText($"LineWidth: {lineWidth1}", 70, 200);
+            LineCapTypes? lineCap = await canvas.GetLineCap();
+            await canvas.FillText($"LineCap: {lineCap}", 70, 230);
+            await canvas.SetLineCap(LineCapTypes.square);
+            LineCapTypes? lineCap1 = await canvas.GetLineCap();
+            await canvas.FillText($"LineCap: {lineCap1}", 70, 260);
+            LineJoinTypes? lineJoin = await canvas.GetLineJoin();
+            await canvas.FillText($"LineJoin: {lineJoin}", 70, 290);
+            await canvas.SetLineJoin(LineJoinTypes.round);
+            LineJoinTypes? lineJoin1 = await canvas.GetLineJoin();
+            await canvas.FillText($"LineJoin: {lineJoin1}", 70, 320);
+            double? miterLimit = await canvas.GetMiterLimit();
+            await canvas.FillText($"MiterLimit: {miterLimit}", 70, 350);
+            await canvas.SetMiterLimit(2);
+            double? miterLimit1 = await canvas.GetMiterLimit();
+            await canvas.FillText($"MiterLimit: {miterLimit1}", 70, 380);
+            int?[]? lineDashes = await canvas.GetLineDash();
+            if (lineDashes is not null)
+                await canvas.FillText($"LineDashes: {{ {string.Join(", ", lineDashes)} }}", 70, 410);
+            await canvas.SetLineDash(new int?[] { 10, 20 });
+            int?[]? lineDashes1 = await canvas.GetLineDash();
+            if (lineDashes1 is not null)
+                await canvas.FillText($"LineDashes: {{ {string.Join(", ", lineDashes1)} }}", 70, 440);
+            double? lineDashOffset = await canvas.GetLineDashOffset();
+            await canvas.FillText($"LineDashOffset: {lineDashOffset}", 70, 470);
+            await canvas.SetLineDashOffset(5);
+            double? lineDashOffset1 = await canvas.GetLineDashOffset();
+            await canvas.FillText($"LineDashOffset: {lineDashOffset1}", 70, 500);
+            #endregion
         }
     }
 }

@@ -136,18 +136,48 @@ namespace EpicAkS.Blazor.Canvas
             await JsInterops.SetCanvas2DContextProperty("lineWidth", lineWidth);
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
-        public async Task<double?> GetLineCap() =>
-            await JsInterops.GetCanvas2DContextProperty<double?>("lineCap");
+        public async Task<LineCapTypes?> GetLineCap()
+        {
+            LineCapTypes? lineCapType = null;
+            switch (await JsInterops.GetCanvas2DContextProperty<string?>("lineCap"))
+            {
+                case "butt":
+                    lineCapType = LineCapTypes.butt;
+                    break;
+                case "square":
+                    lineCapType = LineCapTypes.square;
+                    break;
+                case "round":
+                    lineCapType = LineCapTypes.round;
+                    break;
+            }
+            return lineCapType;
+        }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
-        public async Task SetLineCap(double? lineCap) =>
-            await JsInterops.SetCanvas2DContextProperty("lineCap", lineCap);
+        public async Task SetLineCap(LineCapTypes? lineCap)
+        {
+            string strLineCap = string.Empty;
+            switch (lineCap)
+            {
+                case LineCapTypes.butt:
+                    strLineCap = "butt";
+                    break;
+                case LineCapTypes.square:
+                    strLineCap = "square";
+                    break;
+                case LineCapTypes.round:
+                    strLineCap = "round";
+                    break;
+            }
+            await JsInterops.SetCanvas2DContextProperty("lineCap", strLineCap);
+        }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
         public async Task<LineJoinTypes?> GetLineJoin()
         {
             LineJoinTypes? lineJoinType = null;
-            switch(await JsInterops.GetCanvas2DContextProperty<string?>("lineJoin"))
+            switch (await JsInterops.GetCanvas2DContextProperty<string?>("lineJoin"))
             {
                 case "bevel":
                     lineJoinType = LineJoinTypes.bevel;
@@ -194,9 +224,9 @@ namespace EpicAkS.Blazor.Canvas
             await JsInterops.CallCanvas2DContextFunctionWithReturn<int?[]?>("getLineDash");
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash</summary>
-        public async Task SetLineDash(int[]? segments)
+        public async Task SetLineDash(int?[]? segments)
         {
-            int[]? s = segments ?? Array.Empty<int>();
+            int?[]? s = segments ?? Array.Empty<int?>();
             await JsInterops.CallCanvas2DContextFunctionWithParameters("setLineDash", new object[] { s });
         }
 

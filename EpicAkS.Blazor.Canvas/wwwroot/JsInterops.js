@@ -75,7 +75,7 @@ window.epicAkSHelperFunctions = {
         this.currentCtx = ctx;
     },
     setCanvas2DContextProperty: function (propertyName, value) {
-        if (!this.currentCtx || !this.currentCtx[propertyName]) return;
+        if (!this.currentCtx) return;
         this.currentCtx[propertyName] = value;
     },
     setCanvas2DContextPropertyByExistingVarId: function (propertyName, varId) {
@@ -85,15 +85,15 @@ window.epicAkSHelperFunctions = {
             if (varById) break;
         }
         if (!varById) return;
-        if (!this.currentCtx || !this.currentCtx[propertyName]) return;
+        if (!this.currentCtx || !(propertyName in this.currentCtx)) return
         this.currentCtx[propertyName] = varById;
     },
     getCanvas2DContextProperty: function (propertyName) {
-        if (!this.currentCtx || !this.currentCtx[propertyName]) return null;
+        if (!this.currentCtx || !(propertyName in this.currentCtx)) return null;
         return this.currentCtx[propertyName];
     },
     getCanvas2DContextPropertyWithReturnObjectForProps: function (propertyName, props) {
-        if (!this.currentCtx || !this.currentCtx[propertyName]) return null;
+        if (!this.currentCtx || !(propertyName in this.currentCtx)) return null;
         let obj = this.currentCtx[propertyName];
         let retObj = {};
         for (let i = 0; i < props.length; i++) {
@@ -111,23 +111,23 @@ window.epicAkSHelperFunctions = {
         return varById[propertyName];
     },
     callCanvas2DContextFunction: function (functionName) {
-        if (!this.currentCtx || !this.currentCtx[functionName]) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
         this.currentCtx[functionName].apply(this.currentCtx);
     },
     callCanvas2DContextFunctionWithParameters: function (functionName, functionParams) {
-        if (!this.currentCtx || !this.currentCtx[functionName]) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
         this.currentCtx[functionName].apply(this.currentCtx, functionParams);
     },
     callCanvas2DContextFunctionWithReturn: function (functionName) {
-        if (!this.currentCtx || !this.currentCtx[functionName]) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
         return this.currentCtx[functionName].apply(this.currentCtx);
     },
     callCanvas2DContextFunctionWithParametersWithReturn: function (functionName, functionParams) {
-        if (!this.currentCtx || !this.currentCtx[functionName]) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
         return this.currentCtx[functionName].apply(this.currentCtx, functionParams);
     },
     callCanvas2DContextFunctionWithExistingVarParameter: function (functionName, functionParamVarId) {
-        if (!this.currentCtx || !this.currentCtx[functionName]) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
         let functionParamVarById;
         for (let i = 0; i < this.varsToHold.length; i++) {
             functionParamVarById = this.varsToHold[i][functionParamVarId];
@@ -138,7 +138,7 @@ window.epicAkSHelperFunctions = {
         this.currentCtx[functionName].apply(this.currentCtx, [functionParamVarById]);
     },
     callCanvas2DContextFunctionWithExistingVarAndMoreParameters: function (functionName, functionParamVarId, moreFunctionParameters) {
-        if (!this.currentCtx || !this.currentCtx[functionName]) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
         let functionParamVarById;
         for (let i = 0; i < this.varsToHold.length; i++) {
             functionParamVarById = this.varsToHold[i][functionParamVarId];
@@ -149,19 +149,19 @@ window.epicAkSHelperFunctions = {
         this.currentCtx[functionName].apply(this.currentCtx, [functionParamVarById].concat(moreFunctionParameters));
     },
     callCanvas2DContextFunctionWithVarToHold: function (varId, functionName) {
-        if (!this.currentCtx || !this.currentCtx[functionName] || !varId) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx) || !varId) return;
         let obj = {};
         obj[varId] = this.currentCtx[functionName].apply(this.currentCtx);
         this.varsToHold.push(obj);
     },
     callCanvas2DContextFunctionWithParametersWithVarToHold: function (varId, functionName, functionParams) {
-        if (!this.currentCtx || !this.currentCtx[functionName] || !varId) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx) || !varId) return;
         let obj = {};
         obj[varId] = this.currentCtx[functionName].apply(this.currentCtx, functionParams);
         this.varsToHold.push(obj);
     },
     callCanvas2DContextFunctionWithVarToHoldWithReturn: function (varId, functionName, props) {
-        if (!this.currentCtx || !this.currentCtx[functionName] || !varId) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx) || !varId) return;
         let obj = {};
         obj[varId] = this.currentCtx[functionName].apply(this.currentCtx);
         this.varsToHold.push(obj);
@@ -174,7 +174,7 @@ window.epicAkSHelperFunctions = {
         return JSON.stringify(retObj);
     },
     callCanvas2DContextFunctionWithParametersWithVarToHoldWithReturn: function (varId, functionName, functionParams, props) {
-        if (!this.currentCtx || !this.currentCtx[functionName] || !varId) return;
+        if (!this.currentCtx || !(functionName in this.currentCtx) || !varId) return;
         let obj = {};
         obj[varId] = this.currentCtx[functionName].apply(this.currentCtx, functionParams);
         this.varsToHold.push(obj);
