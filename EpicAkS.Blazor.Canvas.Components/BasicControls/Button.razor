@@ -34,12 +34,18 @@
     [Parameter]
     public MouseEvents.AsyncMouseClick? MouseClick { get; set; }
 
+    [Parameter]
+    public KeyboardEvents.AsyncKeyPress? KeyPress { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         ButtonWindow = new Window { X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
         CanvasComponent?.WindowManager.AddWindow(ButtonWindow);
         ButtonWindow.Draw += DrawButton;
-        ButtonWindow.MouseEvents.MouseClick += MouseClick;
+        if(KeyPress is not null)
+            ButtonWindow.KeyboardEvents.KeyPress += KeyPress;
+        if(MouseClick is not null)
+            ButtonWindow.MouseEvents.MouseClick += MouseClick;
         await base.OnAfterRenderAsync(firstRender);
     }
 

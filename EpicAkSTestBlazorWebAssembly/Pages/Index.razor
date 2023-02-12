@@ -3,8 +3,9 @@
 @using Microsoft.AspNetCore.Components
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="600" Width="100" Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
-        MouseClick="@ButtonClick">
+    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="600" Width="100" 
+        Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
+        MouseClick="@ButtonClick" KeyPress="@MyKeyPress">
     </EpicAkS.Blazor.Canvas.Components.BasicControls.Button>
 </CanvasComponent>
 <img @ref="imgRef" src="64x64.jpg" style="display:none;" />
@@ -27,10 +28,6 @@
 
     public async Task DrawWindow(CanvasComponentInfo canvasComponentInfo)
     {
-        if (canvasComponent is not null)
-        {
-            canvasComponent.WindowManager.RootWindow.KeyboardEvents.KeyPress += MyKeyPress;
-        }
         if (canvasComponentInfo?.Canvas is not null)
         {
             CanvasClass canvas = canvasComponentInfo.Canvas;
@@ -275,7 +272,9 @@
             #endregion
 
             #region Drawing images
-            await canvas.DrawImage(imgRef, 10, 750, 64, 64);
+            await canvas.DrawImage(imgRef, 10, 700);
+            await canvas.DrawImage(imgRef, 250, 700, 64, 64);
+            await canvas.DrawImage(imgRef, 10, 10, 50, 50, 250, 780, 50, 50);
             #endregion
         }
     }

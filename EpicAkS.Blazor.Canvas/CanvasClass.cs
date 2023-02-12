@@ -155,23 +155,8 @@ namespace EpicAkS.Blazor.Canvas
         }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</summary>
-        public async Task SetLineCap(LineCapTypes? lineCap)
-        {
-            string strLineCap = string.Empty;
-            switch (lineCap)
-            {
-                case LineCapTypes.butt:
-                    strLineCap = "butt";
-                    break;
-                case LineCapTypes.square:
-                    strLineCap = "square";
-                    break;
-                case LineCapTypes.round:
-                    strLineCap = "round";
-                    break;
-            }
-            await JsInterops.SetCanvas2DContextProperty("lineCap", strLineCap);
-        }
+        public async Task SetLineCap(LineCapTypes? lineCap) =>
+            await JsInterops.SetCanvas2DContextProperty("lineCap", lineCap.ToString());
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
         public async Task<LineJoinTypes?> GetLineJoin()
@@ -193,23 +178,8 @@ namespace EpicAkS.Blazor.Canvas
         }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin</summary>
-        public async Task SetLineJoin(LineJoinTypes? lineJoin)
-        {
-            string strLineJoin = string.Empty;
-            switch(lineJoin)
-            {
-                case LineJoinTypes.bevel:
-                    strLineJoin = "bevel";
-                    break;
-                case LineJoinTypes.round:
-                    strLineJoin = "round";
-                    break;
-                case LineJoinTypes.miter:
-                    strLineJoin = "miter";
-                    break;
-            }
-            await JsInterops.SetCanvas2DContextProperty("lineJoin", strLineJoin);
-        }
+        public async Task SetLineJoin(LineJoinTypes? lineJoin) =>
+            await JsInterops.SetCanvas2DContextProperty("lineJoin", lineJoin.ToString());
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/miterLimit</summary>
         public async Task<double?> GetMiterLimit() =>
@@ -276,29 +246,8 @@ namespace EpicAkS.Blazor.Canvas
         }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign</summary>
-        public async Task SetTextAlign(TextAlignTypes? textAlign)
-        {
-            string strTextAlign = string.Empty;
-            switch (textAlign)
-            {
-                case TextAlignTypes.left:
-                    strTextAlign = "left";
-                    break;
-                case TextAlignTypes.right:
-                    strTextAlign = "right";
-                    break;
-                case TextAlignTypes.center:
-                    strTextAlign = "center";
-                    break;
-                case TextAlignTypes.start:
-                    strTextAlign = "start";
-                    break;
-                case TextAlignTypes.end:
-                    strTextAlign = "end";
-                    break;
-            }
-            await JsInterops.SetCanvas2DContextProperty("textAlign", strTextAlign);
-        }
+        public async Task SetTextAlign(TextAlignTypes? textAlign) =>
+            await JsInterops.SetCanvas2DContextProperty("textAlign", textAlign.ToString());
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</summary>
         public async Task<TextBaselineTypes?> GetTextBaseline()
@@ -874,30 +823,35 @@ namespace EpicAkS.Blazor.Canvas
         #region Pixel manipulation
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData</summary>
-        public async Task PutImageData(ImageData imageData, int dx, int dy) =>
-            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParameters(
-                "putImageData", imageData, new object[] { dx, dy });
+        public void PutImageData(ImageData imageData, int dx, int dy) => throw new NotImplementedException();
+        //await JsInterops.CallCanvas2DContextFunctionWithParameters(
+        //    "putImageData", new object[] { imageData, dx, dy });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData</summary>
-        public async Task PutImageData(ImageData imageData, int dx, int dy, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight) =>
-            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParameters(
-                "putImageData", imageData, new object[] { dx, dy, dirtyX, dirtyY, dirtyWidth, dirtyHeight });
+        public void PutImageData(ImageData imageData, int dx, int dy, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight) =>
+            throw new NotImplementedException();
+            //await JsInterops.CallCanvas2DContextFunctionWithParameters(
+            //    "putImageData", new object[] { imageData, dx, dy, dirtyX, dirtyY, dirtyWidth, dirtyHeight });
 
         #endregion
 
         #region Image smoothing
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled</summary>
-        public void GetImageSmoothingEnabled() => throw new NotSupportedException();
+        public async Task<bool?> GetImageSmoothingEnabled() =>
+            await JsInterops.GetCanvas2DContextProperty<bool?>("imageSmoothingEnabled");
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled</summary>
-        public void SetImageSmoothingEnabled() => throw new NotSupportedException();
+        public async Task SetImageSmoothingEnabled(bool imageSmoothingEnabled) =>
+            await JsInterops.SetCanvas2DContextProperty("imageSmoothingEnabled", imageSmoothingEnabled);
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingQuality</summary>
-        public void GetImageSmoothingQuality() => throw new NotSupportedException();
+        public async Task<bool?> GetImageSmoothingQuality() =>
+            await JsInterops.GetCanvas2DContextProperty<bool?>("imageSmoothingQuality");
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingQuality</summary>
-        public void SetImageSmoothingQuality() => throw new NotSupportedException();
+        public async Task SetImageSmoothingQuality(ImagedSmoothingQualityTypes imagedSmoothingQualityType) =>
+            await JsInterops.SetCanvas2DContextProperty("imageSmoothingQuality", imagedSmoothingQualityType.ToString());
 
         #endregion
 

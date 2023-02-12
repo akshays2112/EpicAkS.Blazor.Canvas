@@ -105,6 +105,8 @@ namespace EpicAkS.Blazor.Canvas
            object[] functionParameters)
         {
             if (JSRuntime is null) return default;
+            var tmp = await JSRuntime.InvokeAsync<T?>("window.epicAkSHelperFunctions.callCanvas2DContextFunctionWithParametersWithReturn",
+                new object[] { functionName, functionParameters });
             return await JSRuntime.InvokeAsync<T?>("window.epicAkSHelperFunctions.callCanvas2DContextFunctionWithParametersWithReturn",
                 new object[] { functionName, functionParameters });
         }

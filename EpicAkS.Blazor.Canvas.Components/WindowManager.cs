@@ -60,14 +60,6 @@ namespace EpicAkS.Blazor.Canvas.Components
             }
         }
 
-        public void GiveWindowsWithFocus(Window window)
-        {
-            if (window != RootWindow)
-            {
-                WindowWithFocus = window;
-            }
-        }
-
         public Window? GetWindowAt(int x, int y)
         {
             return Windows.LastOrDefault(w => w.IsPointInWindow(x, y));
@@ -76,9 +68,11 @@ namespace EpicAkS.Blazor.Canvas.Components
         public async Task DoMouseEvents(MouseCoords mouseCoords, MouseEventTypes mouseEventTypes)
         {
             var window = GetWindowAt((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop);
-            if (window is not null && window != RootWindow)
+            if (window is not null)
             {
-                BringToFront(window);
+                WindowWithFocus = window;
+                if(window != RootWindow)
+                    BringToFront(window);
                 await window.MouseEvents.DoMouseEvent(mouseCoords, mouseEventTypes);
             }
         }
