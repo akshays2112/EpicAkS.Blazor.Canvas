@@ -2,6 +2,9 @@
     public Window ListBoxWindow { get; set; } = new();
 
     [Parameter]
+    public string Id { get; set; } = string.Empty;
+
+    [Parameter]
     public int X { get; set; }
 
     [Parameter]
@@ -24,7 +27,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        ListBoxWindow = new Window { X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
+        ListBoxWindow = new Window { Id = this.Id, X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
         CanvasComponent?.WindowManager.AddWindow(ListBoxWindow);
         ListBoxWindow.Draw += DrawListBox;
         await base.OnAfterRenderAsync(firstRender);

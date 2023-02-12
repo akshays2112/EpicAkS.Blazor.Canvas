@@ -2,6 +2,9 @@
     public Window ButtonWindow { get; set; } = new();
 
     [Parameter]
+    public string Id { get; set; } = string.Empty;
+
+    [Parameter]
     public int X { get; set; }
 
     [Parameter]
@@ -39,7 +42,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        ButtonWindow = new Window { X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
+        ButtonWindow = new Window { Id = this.Id, X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
         CanvasComponent?.WindowManager.AddWindow(ButtonWindow);
         ButtonWindow.Draw += DrawButton;
         if(KeyPress is not null)

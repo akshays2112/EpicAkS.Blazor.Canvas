@@ -32,11 +32,14 @@
 
     public WindowManager WindowManager = null!;
 
-    protected override Task OnParametersSetAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        if(CanvasComponentInfo is not null)
+        if (CanvasComponentInfo is not null)
+        {
             WindowManager = new(CanvasComponentInfo);
-        return base.OnParametersSetAsync();
+            WindowManager.RootWindow.Draw += DrawWindow;
+        }
+        await base.OnParametersSetAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -51,7 +54,11 @@
         await CanvasComponentInfo.Canvas.SetCurrentCanvas2DContext();
         //await jsRuntime.InvokeVoidAsync("window.epicAkSHelperFunctions.resizeCanvas", $"{Id}");
         Helpers.CanvasComponentInfos.Add(CanvasComponentInfo);
-        WindowManager.RootWindow.Draw += DrawWindow;
+        if (CanvasComponentInfo?.Canvas?.CanvasWidthHeightProp is not null)
+        {
+            WindowManager.RootWindow.Width = CanvasComponentInfo.Canvas.CanvasWidthHeightProp.Value.Width;
+            WindowManager.RootWindow.Height = CanvasComponentInfo.Canvas.CanvasWidthHeightProp.Value.Height;
+        }
         await base.OnAfterRenderAsync(firstRender);
         await Render();
     }

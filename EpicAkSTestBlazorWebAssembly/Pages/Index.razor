@@ -9,7 +9,7 @@
         MouseClick="@ButtonClick" KeyPress="@MyKeyPress">
     </Button>
 </CanvasComponent>
-<img @ref="@imgRef" src="64x64.jpg" />
+<img @ref="@imgRef" src="64x64.jpg" style="display:none;" />
 @code {
     string Id = Guid.NewGuid().ToString();
     private CanvasComponent? canvasComponent;
@@ -32,8 +32,9 @@
 
     private async Task ButtonClick(MouseCoords mouseCoords)
     {
-        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null)
-            await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, 200, 200);
+        CanvasClass? canvas = canvasComponent?.CanvasComponentInfo?.Canvas;
+        if (canvas is not null)
+            await canvas.StrokeRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, 200, 200);
     }
 
     public async Task DrawWindow(CanvasComponentInfo canvasComponentInfo)

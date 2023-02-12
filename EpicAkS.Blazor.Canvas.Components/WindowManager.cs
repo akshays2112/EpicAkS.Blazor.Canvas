@@ -23,13 +23,13 @@ namespace EpicAkS.Blazor.Canvas.Components
 
         public void AddWindow(Window window)
         {
-            if(window != RootWindow)
+            if(window != RootWindow && Windows.Find(w => w.Id == window.Id) is null)
                 Windows.Add(window);
         }
 
         public void RemoveWindow(Window window)
         {
-            if (window != RootWindow)
+            if (window != RootWindow && Windows.Find(w => w.Id == window.Id) is not null)
                 Windows.Remove(window);
         }
 
@@ -71,8 +71,8 @@ namespace EpicAkS.Blazor.Canvas.Components
             if (window is not null)
             {
                 WindowWithFocus = window;
-                if(window != RootWindow)
-                    BringToFront(window);
+                //if(window != RootWindow)
+                //    BringToFront(window);
                 await window.MouseEvents.DoMouseEvent(mouseCoords, mouseEventTypes);
             }
         }
