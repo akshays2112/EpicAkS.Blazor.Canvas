@@ -7,13 +7,18 @@
 @using EpicAkS.Blazor.Canvas
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="600" Width="100" Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
-        MouseClick="@ButtonClick">
-    </EpicAkS.Blazor.Canvas.Components.BasicControls.Button>
+    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="600" Width="100" 
+        Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
+        MouseClick="@ButtonClick" />
+    <EpicAkS.Blazor.Canvas.Components.BasicControls.Label X="10" Y="680" Width="100" 
+        Height="20" Text="Label" BackgroundColor="white" TextColor="black"
+        TextFont="bold 20px Ariel" TextFontHeight=10 CanvasComponent="@canvasComponent" />
 </CanvasComponent>
+<img @ref="imgRef" src="64x64.jpg" style="display:none;" />
 @code {
     private string Id = Guid.NewGuid().ToString();
     private CanvasComponent? canvasComponent;
+    private ElementReference imgRef;
 
     private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
     {
@@ -68,6 +73,7 @@
             await canvas.SetLineWidth(5);
             double? lineWidth1 = await canvas.GetLineWidth();
             await canvas.FillText($"LineWidth: {lineWidth1}", 70, 200);
+            await canvas.SetLineWidth(1);
             LineCapTypes? lineCap = await canvas.GetLineCap();
             await canvas.FillText($"LineCap: {lineCap}", 70, 230);
             await canvas.SetLineCap(LineCapTypes.square);
@@ -90,11 +96,13 @@
             int?[]? lineDashes1 = await canvas.GetLineDash();
             if(lineDashes1 is not null)
                 await canvas.FillText($"LineDashes: {{ {string.Join(", ", lineDashes1)} }}", 70, 440);
+            await canvas.SetLineDash(lineDashes);
             double? lineDashOffset = await canvas.GetLineDashOffset();
             await canvas.FillText($"LineDashOffset: {lineDashOffset}", 70, 470);
             await canvas.SetLineDashOffset(5);
             double? lineDashOffset1 = await canvas.GetLineDashOffset();
             await canvas.FillText($"LineDashOffset: {lineDashOffset1}", 70, 500);
+            await canvas.SetLineDashOffset(lineDashOffset);
             #endregion
 
             #region Text styles
@@ -163,6 +171,118 @@
             await canvas.SetShadowColor(shadowColor);
             await canvas.SetShadowOffsetX((float?)shadowOffsetX);
             await canvas.SetShadowOffsetY((float?)shadowOffsetY);
+            #endregion
+
+            #region Paths
+            await canvas.BeginPath();
+            await canvas.MoveTo(10, 130);
+            await canvas.LineTo(10, 150);
+            await canvas.BezierCurveTo(30, 100, 30, 180, 30, 210);
+            await canvas.QuadraticCurveTo(50, 230, 30, 250);
+            await canvas.Arc(10, 150, 10, 0, 0, false);
+            await canvas.ArcTo(10, 150, 20, 170, 10);
+            await canvas.ClosePath();
+            await canvas.Stroke();
+            #endregion
+
+            #region Drawing paths
+            await canvas.BeginPath();
+            await canvas.MoveTo(10, 310);
+            await canvas.LineTo(35, 270);
+            await canvas.LineTo(50, 220);
+            await canvas.ClosePath();
+            await canvas.Fill();
+            await canvas.SetFillStyle("#FFFF00");
+            await canvas.Fill(FillRuleTypes.evenodd);
+            await canvas.SetFillStyle("#FF00FF");
+            await canvas.Stroke();
+            Path2D? path2D = new Path2D(canvas);
+            await path2D.CreatePath2D();
+            await path2D.MoveTo(10, 320);
+            await path2D.LineTo(50, 320);
+            await path2D.LineTo(50, 370);
+            await path2D.ClosePath();
+            await canvas.SetFillStyle("#00FFFF");
+            await canvas.Fill(path2D);
+            await canvas.SetFillStyle("#56C6A0");
+            await canvas.Fill(path2D, FillRuleTypes.evenodd);
+            await canvas.SetFillStyle("#00FF00");
+            await canvas.Stroke(path2D);
+            await canvas.BeginPath();
+            await canvas.MoveTo(10, 310);
+            await canvas.LineTo(35, 270);
+            await canvas.LineTo(50, 220);
+            await canvas.ClosePath();
+            await canvas.ScrollPathIntoView();
+            await canvas.ScrollPathIntoView(path2D);
+            await canvas.BeginPath();
+            await canvas.MoveTo(10, 380);
+            await canvas.LineTo(50, 380);
+            await canvas.LineTo(35, 430);
+            await canvas.ClosePath();
+            await canvas.Save();
+            await canvas.Clip();
+            await canvas.SetFillStyle("#FF0000");
+            await canvas.FillRect(10, 380, 20, 20);
+            await canvas.Restore();
+            await canvas.SetFillStyle("#000078");
+            await canvas.FillRect(30, 380, 20, 20);
+            Path2D? path2D1 = new Path2D(canvas);
+            await path2D1.CreatePath2D();
+            await path2D1.MoveTo(10, 440);
+            await path2D1.LineTo(50, 440);
+            await path2D1.LineTo(50, 490);
+            await path2D1.ClosePath();
+            bool? isPointInPath = await canvas.IsPointInPath(path2D1, 30, 450);
+            await canvas.FillText($"IsPointInPath: {isPointInPath}", 400, 620);
+            bool? isPointInPath1 = await canvas.IsPointInStroke(path2D1, 30, 440);
+            await canvas.FillText($"IsPointInStroke: {isPointInPath1}", 400, 650);
+            #endregion
+
+            #region Transformations
+            DOMMatrix? domMatrix = await canvas.GetTransform();
+            await canvas.FillText($"DOMMatrix: [ {domMatrix?.a}, {domMatrix?.b}, {domMatrix?.c}, {domMatrix?.d}, {domMatrix?.e}, {domMatrix?.f} ]", 400, 680);
+            await canvas.Save();
+            await canvas.Rotate((45 * Math.PI) / 180);
+            await canvas.Scale(1.5, 1.5);
+            await canvas.Translate(100, 100);
+            await canvas.SetFillStyle("#3028A3");
+            await canvas.FillRect(500, 10, 50, 50);
+            await canvas.Transform(1, 0.2, 0.8, 1, 0, 0);
+            await canvas.SetFillStyle("#A32830");
+            await canvas.FillRect(400, 70, 50, 50);
+            await canvas.SetTransform(1, 0.4, 0.6, 1, 0, 0);
+            await canvas.SetFillStyle("#6735A8");
+            await canvas.FillRect(250, 600, 50, 50);
+            DOMMatrix? domMatrix1 = new(canvas);
+            domMatrix1.a = 1;
+            domMatrix1.b = 0.1;
+            domMatrix1.c = 0.9;
+            domMatrix1.d = 1;
+            domMatrix1.e = 0;
+            domMatrix1.f = 0;
+            await canvas.SetTransform(domMatrix1);
+            await canvas.SetFillStyle("#232830");
+            await canvas.FillRect(150, 700, 50, 50);
+            await canvas.ResetTransform();
+            await canvas.Restore();
+            #endregion
+
+            #region Compositing
+            await canvas.Save();
+            await canvas.SetGlobalAlpha(0.5);
+            double? globalAlpha = await canvas.GetGlobalAlpha();
+            await canvas.FillText($"GlobalAlpha: {globalAlpha}", 600, 20);
+            await canvas.SetGlobalCompositeOperation(GlobalCompositeOperationTypes.SourceOver);
+            await canvas.SetFillStyle("#FF0000");
+            await canvas.FillRect(10, 500, 50, 50);
+            await canvas.SetFillStyle("#00FF00");
+            await canvas.FillRect(30, 520, 50, 50);
+            await canvas.Restore();
+            #endregion
+
+            #region Drawing images
+            await canvas.DrawImage(imgRef, 10, 750, 64, 64);
             #endregion
         }
     }

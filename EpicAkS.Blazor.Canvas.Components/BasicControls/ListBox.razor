@@ -1,0 +1,52 @@
+﻿@code {
+    public Window ListBoxWindow { get; set; } = new();
+
+    [Parameter]
+    public int X { get; set; }
+
+    [Parameter]
+    public int Y { get; set; }
+
+    [Parameter]
+    public int Width { get; set; } = 100;
+
+    [Parameter]
+    public int Height { get; set; } = 50;
+
+    [Parameter]
+    public string? BackgroundColor { get; set; } = "red";
+
+    [Parameter]
+    public List<ListBoxItem>? Items { get; set; }
+
+    [Parameter]
+    public CanvasComponent? CanvasComponent { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        ListBoxWindow = new Window { X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
+        CanvasComponent?.WindowManager.AddWindow(ListBoxWindow);
+        ListBoxWindow.Draw += DrawListBox;
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async Task DrawListBox(EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo canvasComponentInfo)
+    {
+        CanvasClass? canvas = canvasComponentInfo?.Canvas;
+        if (canvas is not null)
+        {
+            await canvas.SetFillStyle(BackgroundColor);
+            await canvas.FillRect(X, Y, Width, Height);
+            if(Items is not null && Items.Count > 0)
+            {
+                foreach (var item in Items)
+                {
+                    //await canvas.SetFillStyle(item.BackgroundColor);
+                    //await canvas.FillRect(item.X, item.Y, item.Width, item.Height);
+                    //await canvas.SetFillStyle(item.ForegroundColor);
+                    //await canvas.FillText(item.Text, item.X + 5, item.Y + 15);
+                }
+            }
+        }
+    }
+}

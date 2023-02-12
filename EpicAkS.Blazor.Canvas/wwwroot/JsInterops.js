@@ -137,6 +137,17 @@ window.epicAkSHelperFunctions = {
         if (!functionParamVarById) return;
         this.currentCtx[functionName].apply(this.currentCtx, [functionParamVarById]);
     },
+    callCanvas2DContextFunctionWithExistingVarParameterWithReturn: function (functionName, functionParamVarId) {
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
+        let functionParamVarById;
+        for (let i = 0; i < this.varsToHold.length; i++) {
+            functionParamVarById = this.varsToHold[i][functionParamVarId];
+            if (functionParamVarById)
+                break;
+        }
+        if (!functionParamVarById) return;
+        return this.currentCtx[functionName].apply(this.currentCtx, [functionParamVarById]);
+    },
     callCanvas2DContextFunctionWithExistingVarAndMoreParameters: function (functionName, functionParamVarId, moreFunctionParameters) {
         if (!this.currentCtx || !(functionName in this.currentCtx)) return;
         let functionParamVarById;
@@ -147,6 +158,17 @@ window.epicAkSHelperFunctions = {
         }
         if (!functionParamVarById) return;
         this.currentCtx[functionName].apply(this.currentCtx, [functionParamVarById].concat(moreFunctionParameters));
+    },
+    callCanvas2DContextFunctionWithExistingVarAndMoreParametersWithReturn: function (functionName, functionParamVarId, moreFunctionParameters) {
+        if (!this.currentCtx || !(functionName in this.currentCtx)) return;
+        let functionParamVarById;
+        for (let i = 0; i < this.varsToHold.length; i++) {
+            functionParamVarById = this.varsToHold[i][functionParamVarId];
+            if (functionParamVarById)
+                break;
+        }
+        if (!functionParamVarById) return;
+        return this.currentCtx[functionName].apply(this.currentCtx, [functionParamVarById].concat(moreFunctionParameters));
     },
     callCanvas2DContextFunctionWithVarToHold: function (varId, functionName) {
         if (!this.currentCtx || !(functionName in this.currentCtx) || !varId) return;

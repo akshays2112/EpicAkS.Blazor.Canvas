@@ -259,12 +259,6 @@
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.IsPointInStroke(EpicAkS.Blazor.Canvas.Path2D,System.Int32,System.Int32)">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInStroke</summary>
         </member>
-        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetCurrentTransform">
-            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/currentTransform</summary>
-        </member>
-        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetCurrentTransform">
-            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/currentTransform</summary>
-        </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.GetTransform">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getTransform</summary>
         </member>
@@ -279,9 +273,6 @@
         </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.Transform(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform</summary>
-        </member>
-        <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetTransform">
-            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
         </member>
         <member name="M:EpicAkS.Blazor.Canvas.CanvasClass.SetTransform(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
@@ -344,6 +335,24 @@
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getContextAttributes</summary>
         </member>
         <member name="T:EpicAkS.Blazor.Canvas.DOMMatrix">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.DOMMatrix.a">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.DOMMatrix.b">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.DOMMatrix.c">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.DOMMatrix.d">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.DOMMatrix.e">
+            <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+        </member>
+        <member name="P:EpicAkS.Blazor.Canvas.DOMMatrix.f">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
         </member>
         <member name="M:EpicAkS.Blazor.Canvas.DOMMatrix.#ctor(EpicAkS.Blazor.Canvas.CanvasClass)">

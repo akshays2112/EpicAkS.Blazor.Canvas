@@ -1,9 +1,35 @@
-﻿namespace EpicAkS.Blazor.Canvas;
+﻿using System.Text.Json.Serialization;
+
+namespace EpicAkS.Blazor.Canvas;
 
 ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
 public class DOMMatrix : ReturnVar
 {
     private JsInterops jsInterops { get; init; }
+
+    ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+    [JsonPropertyName("a")]
+    public double a { get; set; }
+
+    ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+    [JsonPropertyName("b")]
+    public double b { get; set; }
+
+    ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+    [JsonPropertyName("c")]
+    public double c { get; set; }
+
+    ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+    [JsonPropertyName("d")]
+    public double d { get; set; }
+
+    ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+    [JsonPropertyName("e")]
+    public double e { get; set; }
+
+    ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrix/DOMMatrix</summary>
+    [JsonPropertyName("f")]
+    public double f { get; set; }
 
     ///<summary></summary>
     public DOMMatrix(CanvasClass Canvas)

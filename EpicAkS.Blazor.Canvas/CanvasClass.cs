@@ -548,13 +548,13 @@ namespace EpicAkS.Blazor.Canvas
             await JsInterops.CallCanvas2DContextFunctionWithExistingVarParameter("stroke", path2D);
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded</summary>
-        public async Task DrawFocusIfNeeded(ElementReference elementReference) =>
-            await JsInterops.CallCanvas2DContextFunctionWithElementReferenceParameter("drawFocusIfNeeded", elementReference);
+        public void DrawFocusIfNeeded(ElementReference elementReference) => throw new NotImplementedException();
+            //await JsInterops.CallCanvas2DContextFunctionWithElementReferenceParameter("drawFocusIfNeeded", elementReference);
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded</summary>
-        public async Task DrawFocusIfNeeded(ElementReference elementReference, Path2D path2D) =>
-            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParameters(
-                "drawFocusIfNeeded", path2D, new object[] { elementReference });
+        public void DrawFocusIfNeeded(ElementReference elementReference, Path2D path2D) => throw new NotImplementedException();
+            //await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParameters(
+            //    "drawFocusIfNeeded", path2D, new object[] { elementReference });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scrollPathIntoView</summary>
         public async Task ScrollPathIntoView() =>
@@ -589,56 +589,50 @@ namespace EpicAkS.Blazor.Canvas
         }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
-        public async Task IsPointInPath(int x, int y) => 
-            await JsInterops.CallCanvas2DContextFunctionWithParameters("isPointInPath", new object[] { x, y });
+        public async Task<bool?> IsPointInPath(int x, int y) => 
+            await JsInterops.CallCanvas2DContextFunctionWithParametersWithReturn<bool?>("isPointInPath", new object[] { x, y });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
-        public async Task IsPointInPath(int x, int y, FillRuleTypes fillRuleType)
+        public async Task<bool?> IsPointInPath(int x, int y, FillRuleTypes fillRuleType)
         {
             string strFillRuleType = "nonzero";
             if (fillRuleType == FillRuleTypes.evenodd) strFillRuleType = "evenodd";
-            await JsInterops.CallCanvas2DContextFunctionWithParameters("isPointInPath", new object[] { x, y, strFillRuleType });
+            return await JsInterops.CallCanvas2DContextFunctionWithParametersWithReturn<bool?>("isPointInPath", new object[] { x, y, strFillRuleType });
         }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
-        public async Task IsPointInPath(Path2D path2D, int x, int y) =>
-            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParameters("isPointInPath", 
+        public async Task<bool?> IsPointInPath(Path2D path2D, int x, int y) =>
+            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParametersWithReturn<bool?, Path2D>("isPointInPath", 
                 path2D, new object[] { x, y });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath</summary>
-        public async Task IsPointInPath(Path2D path2D, int x, int y, FillRuleTypes fillRuleType)
+        public async Task<bool?> IsPointInPath(Path2D path2D, int x, int y, FillRuleTypes fillRuleType)
         {
             string strFillRuleType = "nonzero";
             if (fillRuleType == FillRuleTypes.evenodd) strFillRuleType = "evenodd";
-            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParameters("isPointInPath", 
+            return await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParametersWithReturn<bool?, Path2D>("isPointInPath", 
                 path2D, new object[] { x, y, strFillRuleType });
         }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInStroke</summary>
-        public async Task IsPointInStroke(int x, int y) => await JsInterops.CallCanvas2DContextFunctionWithParameters(
+        public async Task<bool?> IsPointInStroke(int x, int y) => await JsInterops.CallCanvas2DContextFunctionWithParametersWithReturn<bool?>(
             "isPointInStroke", new object[] { x, y });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInStroke</summary>
-        public async Task IsPointInStroke(Path2D path2D, int x, int y) =>
-            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParameters("isPointInStroke",
+        public async Task<bool?> IsPointInStroke(Path2D path2D, int x, int y) =>
+            await JsInterops.CallCanvas2DContextFunctionWithExistingVarAndMoreParametersWithReturn<bool?, Path2D>("isPointInStroke",
                 path2D, new object[] { x, y });
 
         #endregion
 
         #region Transformations
 
-        ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/currentTransform</summary>
-        public void GetCurrentTransform() => throw new NotSupportedException();
-
-        ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/currentTransform</summary>
-        public void SetCurrentTransform() => throw new NotSupportedException();
-
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getTransform</summary>
-        public async Task<DOMMatrix> GetTransform()
+        public async Task<DOMMatrix?> GetTransform()
         {
             DOMMatrix domMatrix = new(this);
-            await JsInterops.CallCanvas2DContextFunctionWithVarToHold(domMatrix, "getTransform");
-            return domMatrix;
+            DOMMatrix? domMatrixTmp = await JsInterops.CallCanvas2DContextFunctionWithVarToHoldWithReturn(domMatrix, "getTransform");
+            return domMatrixTmp;
         }
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate</summary>
@@ -658,18 +652,16 @@ namespace EpicAkS.Blazor.Canvas
             await JsInterops.CallCanvas2DContextFunctionWithParameters("transform", new object[] { a, b, c, d, e, f });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
-        public async Task SetTransform() => await JsInterops.CallCanvas2DContextFunction("setTransform");
-
-        ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
         public async Task SetTransform(double a, double b, double c, double d, double e, double f) =>
             await JsInterops.CallCanvas2DContextFunctionWithParameters("setTransform", new object[] { a, b, c, d, e, f });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</summary>
         public async Task SetTransform(DOMMatrix domMatrix) =>
-            await JsInterops.CallCanvas2DContextFunctionWithExistingVarParameter("setTransform", domMatrix);
+            await JsInterops.CallCanvas2DContextFunctionWithParameters("setTransform", new object[] { 
+                domMatrix.a, domMatrix.b, domMatrix.c, domMatrix.d, domMatrix.e, domMatrix.f });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/resetTransform</summary>
-        public void ResetTransform() => throw new NotSupportedException();
+        public async Task ResetTransform() => await JsInterops.CallCanvas2DContextFunction("resetTransform");
 
         #endregion
 
@@ -863,19 +855,19 @@ namespace EpicAkS.Blazor.Canvas
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage</summary>
         public async Task DrawImage(ElementReference elementReference, int dx, int dy) =>
-            await JsInterops.CallCanvas2DContextFunctionWithElementReferenceAndMoreParameters("drawImage", 
-                elementReference, new object[] { dx, dy });
+            await JsInterops.CallCanvas2DContextFunctionWithParameters("drawImage", 
+                new object[] { elementReference, dx, dy });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage</summary>
         public async Task DrawImage(ElementReference elementReference, int dx, int dy, int dWidth, int dHeight) =>
-            await JsInterops.CallCanvas2DContextFunctionWithElementReferenceAndMoreParameters("drawImage",
-                elementReference, new object[] { dx, dy, dWidth, dHeight });
+            await JsInterops.CallCanvas2DContextFunctionWithParameters("drawImage",
+                new object[] { elementReference, dx, dy, dWidth, dHeight });
 
         ///<summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage</summary>
         public async Task DrawImage(ElementReference elementReference, int sx, int sy, int sWidth, int sHeight, 
             int dx, int dy, int dWidth, int dHeight) =>
-            await JsInterops.CallCanvas2DContextFunctionWithElementReferenceAndMoreParameters("drawImage",
-                elementReference, new object[] { sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight });
+            await JsInterops.CallCanvas2DContextFunctionWithParameters("drawImage",
+                new object[] { elementReference, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight });
 
         #endregion
 

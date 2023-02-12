@@ -120,6 +120,18 @@ namespace EpicAkS.Blazor.Canvas
             }
         }
 
+        internal async Task<T1?> CallCanvas2DContextFunctionWithExistingVarParameterWithReturn<T1, T2>(string functionName, T2 tObj) where T2 : ReturnVar
+        {
+            if (JSRuntime is null) return default;
+            if (tObj is not null && !string.IsNullOrWhiteSpace(((ReturnVar)tObj).VarIdString) &&
+                !string.IsNullOrWhiteSpace(functionName))
+            {
+                return await JSRuntime.InvokeAsync<T1?>("window.epicAkSHelperFunctions.callCanvas2DContextFunctionWithExistingVarParameterWithReturn",
+                    new object[] { functionName, ((ReturnVar)tObj).VarIdString });
+            }
+            return default;
+        }
+
         internal async Task CallCanvas2DContextFunctionWithExistingVarAndMoreParameters<T>(
            string functionName, T tObj, object[] moreFunctionParameters) where T : ReturnVar
         {
@@ -132,25 +144,17 @@ namespace EpicAkS.Blazor.Canvas
             }
         }
 
-        internal async Task CallCanvas2DContextFunctionWithElementReferenceParameter(string functionName, ElementReference elementReference)
+        internal async Task<T1?> CallCanvas2DContextFunctionWithExistingVarAndMoreParametersWithReturn<T1, T2>(
+           string functionName, T2 tObj, object[] moreFunctionParameters) where T2 : ReturnVar
         {
-            if (JSRuntime is null) return;
-            if (!string.IsNullOrWhiteSpace(functionName))
+            if (JSRuntime is null) return default;
+            if (tObj is not null && !string.IsNullOrWhiteSpace(((ReturnVar)tObj).VarIdString) &&
+                !string.IsNullOrWhiteSpace(functionName))
             {
-                await JSRuntime.InvokeVoidAsync("window.epicAkSHelperFunctions.callCanvas2DContextFunctionWithParameters",
-                    new object[] { functionName, elementReference });
+                return await JSRuntime.InvokeAsync<T1?>("window.epicAkSHelperFunctions.callCanvas2DContextFunctionWithExistingVarAndMoreParametersWithReturn",
+                    new object[] { functionName, ((ReturnVar)tObj).VarIdString, moreFunctionParameters });
             }
-        }
-
-        internal async Task CallCanvas2DContextFunctionWithElementReferenceAndMoreParameters(string functionName, 
-            ElementReference elementReference, object[] moreFunctionParameters)
-        {
-            if (JSRuntime is null) return;
-            if (!string.IsNullOrWhiteSpace(functionName))
-            {
-                await JSRuntime.InvokeVoidAsync("window.epicAkSHelperFunctions.callCanvas2DContextFunctionWithParameters",
-                    (new object[] { functionName, elementReference }).Append(moreFunctionParameters));
-            }
+            return default;
         }
 
         internal async Task CallFunctionWithNewVarToHold<T>(T newTObj, string functionName)
