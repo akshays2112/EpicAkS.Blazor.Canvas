@@ -5,12 +5,13 @@
 @using EpicAkS.Blazor.Canvas.Structs
 @using EpicAkS.Blazor.Canvas.Enums
 @using EpicAkS.Blazor.Canvas
+@using EpicAkS.Blazor.Canvas.Components.BasicControls
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button Id="TestButton1" X="10" Y="600" Width="100" 
+    <Button Id="TestButton1" X="10" Y="600" Width="100" 
         Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
         MouseClick="@ButtonClick" KeyPress="@MyKeyPress" />
-    <EpicAkS.Blazor.Canvas.Components.BasicControls.Label Id="TestLabel1" X="10" Y="680" Width="100" 
+    <Label Id="TestLabel1" X="10" Y="680" Width="100" 
         Height="20" Text="Label" BackgroundColor="white" TextColor="black"
         TextFont="bold 20px Ariel" TextFontHeight=10 CanvasComponent="@canvasComponent" />
 </CanvasComponent>

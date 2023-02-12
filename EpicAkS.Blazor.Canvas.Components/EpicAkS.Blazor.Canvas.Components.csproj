@@ -20,7 +20,7 @@
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageIcon>EpicAkSLogo.png</PackageIcon>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
   </PropertyGroup>
 
   <ItemGroup>
