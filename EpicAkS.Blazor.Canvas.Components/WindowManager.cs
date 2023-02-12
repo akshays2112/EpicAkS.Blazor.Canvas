@@ -71,8 +71,6 @@ namespace EpicAkS.Blazor.Canvas.Components
             if (window is not null)
             {
                 WindowWithFocus = window;
-                //if(window != RootWindow)
-                //    BringToFront(window);
                 await window.MouseEvents.DoMouseEvent(mouseCoords, mouseEventTypes);
             }
         }

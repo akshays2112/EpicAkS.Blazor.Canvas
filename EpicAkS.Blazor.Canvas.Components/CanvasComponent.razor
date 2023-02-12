@@ -52,7 +52,6 @@
         CanvasComponentInfo.Canvas = new(jsRuntime);
         await CanvasComponentInfo.Canvas.CreateCanvas(divCanvas, $"{Id}");
         await CanvasComponentInfo.Canvas.SetCurrentCanvas2DContext();
-        //await jsRuntime.InvokeVoidAsync("window.epicAkSHelperFunctions.resizeCanvas", $"{Id}");
         Helpers.CanvasComponentInfos.Add(CanvasComponentInfo);
         if (CanvasComponentInfo?.Canvas?.CanvasWidthHeightProp is not null)
         {
