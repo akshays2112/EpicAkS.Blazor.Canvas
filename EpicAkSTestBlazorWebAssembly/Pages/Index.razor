@@ -1,14 +1,15 @@
 ﻿@page "/"
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.Components
+@using EpicAkS.Blazor.Canvas.Components.BasicControls
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <EpicAkS.Blazor.Canvas.Components.BasicControls.Button X="10" Y="600" Width="100" 
+    <Button X="10" Y="600" Width="100" 
         Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
         MouseClick="@ButtonClick" KeyPress="@MyKeyPress">
-    </EpicAkS.Blazor.Canvas.Components.BasicControls.Button>
+    </Button>
 </CanvasComponent>
-<img @ref="imgRef" src="64x64.jpg" style="display:none;" />
+<img @ref="@imgRef" src="64x64.jpg" />
 @code {
     string Id = Guid.NewGuid().ToString();
     private CanvasComponent? canvasComponent;
@@ -16,8 +17,17 @@
 
     private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
     {
-        if (canvasComponent?.CanvasComponentInfo?.Canvas is not null)
-            await canvasComponent.CanvasComponentInfo.Canvas.StrokeRect(100, 100, 200, 200);
+        CanvasClass? canvas = canvasComponent?.CanvasComponentInfo?.Canvas;
+        if (canvas is not null)
+        {
+            await canvas.StrokeRect(100, 100, 200, 200);
+
+            #region Drawing images
+            await canvas.DrawImage(imgRef, 10, 700);
+            await canvas.DrawImage(imgRef, 250, 700, 64, 64);
+            await canvas.DrawImage(imgRef, 10, 10, 50, 50, 250, 780, 50, 50);
+            #endregion
+        }
     }
 
     private async Task ButtonClick(MouseCoords mouseCoords)
@@ -269,12 +279,6 @@
             await canvas.SetFillStyle("#00FF00");
             await canvas.FillRect(30, 520, 50, 50);
             await canvas.Restore();
-            #endregion
-
-            #region Drawing images
-            await canvas.DrawImage(imgRef, 10, 700);
-            await canvas.DrawImage(imgRef, 250, 700, 64, 64);
-            await canvas.DrawImage(imgRef, 10, 10, 50, 50, 250, 780, 50, 50);
             #endregion
         }
     }
