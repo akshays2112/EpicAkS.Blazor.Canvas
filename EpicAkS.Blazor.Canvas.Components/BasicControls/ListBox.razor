@@ -1,5 +1,7 @@
-﻿@code {
+﻿@using static EpicAkS.Blazor.Canvas.Components.Helpers
+@code {
     public Window ListBoxWindow { get; set; } = new();
+    public delegate Task AsyncMouseClick(MouseCoords mouseCoords, ListBoxItem listBoxItem);
 
     [Parameter]
     public string Id { get; set; } = string.Empty;
@@ -23,31 +25,64 @@
     public List<ListBoxItem>? Items { get; set; }
 
     [Parameter]
+    public AsyncMouseClick? OnMouseClick { get; set; }
+
+    [Parameter]
     public CanvasComponent? CanvasComponent { get; set; }
+
+    private int currentTopListItemIndex = 0;
+    private List<ListBoxItem> visibleItems = new();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         ListBoxWindow = new Window { Id = this.Id, X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
         CanvasComponent?.WindowManager.AddWindow(ListBoxWindow);
         ListBoxWindow.Draw += DrawListBox;
+        ListBoxWindow.MouseEvents.MouseClick += MouseClick;
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async Task MouseClick(MouseCoords mouseCoords)
+    {
+        if(visibleItems.Count > 0)
+        {
+            int currentYOffset = 0;
+            for (int i = 0; i < visibleItems.Count; i++)
+            {
+                if(IsPointInRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, X, Y + currentYOffset, visibleItems[i].Width, visibleItems[i].Height))
+                {
+                    if(OnMouseClick is not null)
+                    {
+                        await OnMouseClick(mouseCoords, visibleItems[i]);
+                    }
+                }
+                currentYOffset += visibleItems[i].Height;
+            }
+        }
     }
 
     public async Task DrawListBox(EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo canvasComponentInfo)
     {
-        CanvasClass? canvas = canvasComponentInfo?.Canvas;
-        if (canvas is not null)
+        if (canvasComponentInfo is not null)
         {
-            await canvas.SetFillStyle(BackgroundColor);
-            await canvas.FillRect(X, Y, Width, Height);
-            if(Items is not null && Items.Count > 0)
+            CanvasClass? canvas = canvasComponentInfo?.Canvas;
+            if (canvas is not null)
             {
-                foreach (var item in Items)
+                await canvas.SetFillStyle(BackgroundColor);
+                await canvas.FillRect(X, Y, Width, Height);
+                if (Items is not null && Items.Count > 0)
                 {
-                    //await canvas.SetFillStyle(item.BackgroundColor);
-                    //await canvas.FillRect(item.X, item.Y, item.Width, item.Height);
-                    //await canvas.SetFillStyle(item.ForegroundColor);
-                    //await canvas.FillText(item.Text, item.X + 5, item.Y + 15);
+                    visibleItems.Clear();
+                    int currentYOffset = 0;
+                    for (int i = currentTopListItemIndex; i < Items.Count && currentYOffset < Height; i++)
+                    {
+                        if (canvasComponentInfo is not null)
+                        {
+                            visibleItems.Add(Items[i]);
+                            await Items[i].DrawListBoxItem(canvasComponentInfo, X, Y + currentYOffset);
+                            currentYOffset += Items[i].Height;
+                        }
+                    }
                 }
             }
         }

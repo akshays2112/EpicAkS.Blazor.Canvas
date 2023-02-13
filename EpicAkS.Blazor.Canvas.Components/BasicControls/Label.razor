@@ -1,4 +1,5 @@
-﻿@code {
+﻿@using static EpicAkS.Blazor.Canvas.Components.Helpers
+@code {
     public Window LabelWindow { get; set; } = new();
 
     [Parameter]
@@ -42,12 +43,12 @@
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    public async Task DrawLabel(EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo canvasComponentInfo)
+    public async Task DrawLabel(CanvasComponentInfo canvasComponentInfo)
     {
         CanvasClass? canvas = canvasComponentInfo?.Canvas;
         if (canvas is not null)
         {
-            await canvas.SetFillStyle(BackgroundColor);
+            await canvas.SetFillStyle(BackgroundColor ?? "white");
             await canvas.FillRect(X, Y, Width, Height);
             await canvas.SetFillStyle(TextColor);
             await canvas.SetFont(TextFont);

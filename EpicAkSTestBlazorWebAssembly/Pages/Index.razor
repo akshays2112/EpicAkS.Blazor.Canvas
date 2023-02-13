@@ -1,21 +1,59 @@
 ﻿@page "/"
 @using Microsoft.JSInterop
 @using Microsoft.AspNetCore.Components
+@using EpicAkS.Blazor.Canvas.Components
+@using EpicAkS.Blazor.Canvas.Structs
+@using EpicAkS.Blazor.Canvas.Enums
+@using EpicAkS.Blazor.Canvas
 @using EpicAkS.Blazor.Canvas.Components.BasicControls
+@using EpicAkS.Blazor.Canvas.Components.BasicControls.Classes
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <Button Id="TestButton1" X="10" Y="600" Width="100"
-            Height="50" Text="Button" ButtonColor="blue" CanvasComponent="@canvasComponent"
-        MouseClick="@ButtonClick" KeyPress="@MyKeyPress" />
-    <Label Id="TestLabel1" X="10" Y="680" Width="100"
-           Height="20" Text="Label" BackgroundColor="white" TextColor="black"
-           TextFont="bold 20px Ariel" TextFontHeight=10 CanvasComponent="@canvasComponent" />
+    <Button Id="TestButton1" X="10" Y="600" Width="100" Height="50" Text="Button" ButtonColor="blue"
+        CanvasComponent="@canvasComponent" MouseClick="@ButtonClick" KeyPress="@MyKeyPress" />
+    <Label Id="TestLabel1" X="10" Y="680" Width="100" Height="20" Text="Label" BackgroundColor="white"
+        TextColor="black" TextFont="bold 20px Ariel" TextFontHeight=10 CanvasComponent="@canvasComponent" />
+    <ListBox Id="TestListBox1" X="800" Y="10" Width="300" Height="200" BackgroundColor="lightblue"
+        Items="@listBoxItems" OnMouseClick="@TestListBox1MouseClick" CanvasComponent="@canvasComponent" />
 </CanvasComponent>
 <img @ref="@imgRef" src="64x64.jpg" style="display:none;" />
 @code {
     string Id = Guid.NewGuid().ToString();
     private CanvasComponent? canvasComponent;
     private ElementReference imgRef;
+    private List<ListBoxItem> listBoxItems = new()
+    {
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 1",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 2",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 3",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 4",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 5",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 6",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 7",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 8",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 9",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 10",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 11",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 12",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 13",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 14",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+        new ListBoxItem { Width = 300, Height = 20, BackgroundColor = "lightgreen", Text = "Item 15",
+            TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 },
+    };
 
     private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
     {
@@ -37,6 +75,15 @@
         CanvasClass? canvas = canvasComponent?.CanvasComponentInfo?.Canvas;
         if (canvas is not null)
             await canvas.StrokeRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, 200, 200);
+    }
+
+    private async Task TestListBox1MouseClick(MouseCoords mouseCoords, ListBoxItem listBoxItem)
+    {
+        CanvasClass? canvas = canvasComponent?.CanvasComponentInfo?.Canvas;
+        if (canvas is not null)
+        {
+            await canvas.FillText($"TestListBox1MouseClick: {listBoxItem.Text}", 600, 50);
+        }
     }
 
     public async Task DrawWindow(CanvasComponentInfo canvasComponentInfo)
