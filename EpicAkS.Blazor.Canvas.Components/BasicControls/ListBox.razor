@@ -1,6 +1,6 @@
 ﻿@using static EpicAkS.Blazor.Canvas.Components.Helpers
 @code {
-    public Window ListBoxWindow { get; set; } = new();
+    public Window? ListBoxWindow { get; set; }
     public delegate Task AsyncMouseClick(MouseCoords mouseCoords, ListBoxItem listBoxItem);
 
     [Parameter]
@@ -19,7 +19,7 @@
     public int Height { get; set; } = 50;
 
     [Parameter]
-    public string? BackgroundColor { get; set; } = "red";
+    public string? BackgroundColor { get; set; } = "white";
 
     [Parameter]
     public List<ListBoxItem>? Items { get; set; }
@@ -31,7 +31,10 @@
     public CanvasComponent? CanvasComponent { get; set; }
 
     private int currentTopListItemIndex = 0;
+    public int SelectedItemIndex { get; set; } = -1;
+    public ListBoxItem? SelectedItem { get; set; }
     private List<ListBoxItem> visibleItems = new();
+    public VerticalScrollBar? verticalScrollBar { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -39,6 +42,17 @@
         CanvasComponent?.WindowManager.AddWindow(ListBoxWindow);
         ListBoxWindow.Draw += DrawListBox;
         ListBoxWindow.MouseEvents.MouseClick += MouseClick;
+        int currentHeight = 0;
+        for(int i = 0; i < Items?.Count; i++)
+        {
+            currentHeight += Items[i].Height;
+            if (currentHeight > Height)
+            {
+                verticalScrollBar = new VerticalScrollBar { MaxItems = Items.Count, CurrentItem = 0, Height = this.Height };
+                ListBoxWindow.Width += verticalScrollBar.Width;
+                break;
+            }
+        }
         await base.OnAfterRenderAsync(firstRender);
     }
 
@@ -47,6 +61,7 @@
         if(visibleItems.Count > 0)
         {
             int currentYOffset = 0;
+            bool found = false;
             for (int i = 0; i < visibleItems.Count; i++)
             {
                 if(IsPointInRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, X, Y + currentYOffset, visibleItems[i].Width, visibleItems[i].Height))
@@ -55,13 +70,32 @@
                     {
                         await OnMouseClick(mouseCoords, visibleItems[i]);
                     }
+                    if(verticalScrollBar is not null)
+                    {
+                        for(int j=0; j < Items?.Count; j++)
+                        {
+                            if(Items[j] == visibleItems[i])
+                            {
+                                found = true;
+                                verticalScrollBar.CurrentItem = j;
+                                if(CanvasComponent?.CanvasComponentInfo is not null)
+                                    await verticalScrollBar.DrawVerticalScrollBar(CanvasComponent.CanvasComponentInfo, X + Width, Y);
+                                break;
+                            }
+                        }
+                    }
+                    break;
                 }
                 currentYOffset += visibleItems[i].Height;
+            }
+            if(!found && verticalScrollBar is not null && CanvasComponent?.CanvasComponentInfo is not null)
+            {
+                await DrawListBox(CanvasComponent.CanvasComponentInfo);
             }
         }
     }
 
-    public async Task DrawListBox(EpicAkS.Blazor.Canvas.Components.Helpers.CanvasComponentInfo canvasComponentInfo)
+    public async Task DrawListBox(CanvasComponentInfo canvasComponentInfo)
     {
         if (canvasComponentInfo is not null)
         {
@@ -85,6 +119,8 @@
                     }
                 }
             }
+            if(canvasComponentInfo is not null)
+                verticalScrollBar?.DrawVerticalScrollBar(canvasComponentInfo, X + Width, Y);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@using static EpicAkS.Blazor.Canvas.Components.Helpers
 @code {
-    public Window LabelWindow { get; set; } = new();
+    public Window? LabelWindow { get; set; }
 
     [Parameter]
     public string Id { get; set; } = string.Empty;
