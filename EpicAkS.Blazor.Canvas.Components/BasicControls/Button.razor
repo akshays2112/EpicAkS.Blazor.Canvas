@@ -57,6 +57,7 @@
         CanvasClass? canvas = canvasComponentInfo?.Canvas;
         if (canvas is not null)
         {
+            await canvas.ClearRect(X, Y, Width, Height);
             await canvas.SetFillStyle(ButtonColor);
             await canvas.FillRect(X, Y, Width, Height);
             await canvas.SetFillStyle(TextColor);

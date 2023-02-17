@@ -1,0 +1,45 @@
+﻿@code {
+    public Window? ListBoxItemWindow { get; set; }
+
+    [Parameter]
+    public int Width { get; set; } = 100;
+
+    [Parameter]
+    public int Height { get; set; } = 20;
+
+    [Parameter]
+    public string Text { get; set; } = "Button";
+
+    [Parameter]
+    public string TextColor { get; set; } = "#656565";
+
+    [Parameter]
+    public string TextFont { get; set; } = "12px serif";
+
+    [Parameter]
+    public int TextFontHeight { get; set; } = 12;
+
+    [Parameter]
+    public string? BackgroundColor { get; set; } = "white";
+
+    [Parameter]
+    public int LeftPadding { get; set; } = 5;
+
+    public void InitProperties(int width, int height, string text, string textColor, string textFont, int textFontHeight, string? backgroundColor)
+    {
+        Width = width;
+        Height = height;
+        Text = text;
+        TextColor = textColor;
+        TextFont = textFont;
+        TextFontHeight = textFontHeight;
+        BackgroundColor = backgroundColor;
+    }
+
+    public async Task DrawListItem(int x, int y, CanvasClass canvas)
+    {
+        await canvas.SetFont(TextFont);
+        await canvas.SetFillStyle(TextColor);
+        await canvas.FillText(Text, x + LeftPadding, y + ((Height + TextFontHeight) / 2));
+    }
+}

@@ -634,18 +634,6 @@
         <member name="M:EpicAkS.Blazor.Canvas.ImageData.#ctor(EpicAkS.Blazor.Canvas.CanvasClass)">
             <summary></summary>
         </member>
-        <member name="M:EpicAkS.Blazor.Canvas.ImageData.CreateImageData(System.Int32,System.Int32)">
-            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createImageData</summary>
-        </member>
-        <member name="M:EpicAkS.Blazor.Canvas.ImageData.CreateImageData(EpicAkS.Blazor.Canvas.ImageData)">
-            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createImageData</summary>
-        </member>
-        <member name="M:EpicAkS.Blazor.Canvas.ImageData.GetImageData(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData</summary>
-        </member>
-        <member name="M:EpicAkS.Blazor.Canvas.ImageData.GetImageData(System.Int32,System.Int32,System.Int32,System.Int32,EpicAkS.Blazor.Canvas.Enums.ColorSpaceTypes)">
-            <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData</summary>
-        </member>
         <member name="T:EpicAkS.Blazor.Canvas.ImageDataSettings">
             <summary>https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData</summary>
         </member>
