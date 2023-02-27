@@ -1,5 +1,12 @@
-﻿@using static EpicAkS.Blazor.Canvas.Components.Helpers
-@code {
+﻿using EpicAkS.Blazor.Canvas.Enums;
+using EpicAkS.Blazor.Canvas.Structs;
+using Microsoft.AspNetCore.Components.Web;
+using static EpicAkS.Blazor.Canvas.Components.Helpers;
+
+namespace EpicAkS.Blazor.Canvas.Components.BasicControls;
+
+public class ListBox
+{
     public Window? ListBoxWindow { get; set; }
     private List<ListBoxItem> visibleItems = new List<ListBoxItem>();
     private int topListBoxItemIndex = 0;
@@ -7,46 +14,36 @@
     public Scrollbar? ScrollBar1;
     public string ScrollBar1Id = new Guid().ToString();
 
-    [Parameter]
     public string Id { get; set; } = string.Empty;
 
-    [Parameter]
     public int X { get; set; }
 
-    [Parameter]
     public int Y { get; set; }
 
-    [Parameter]
     public int Width { get; set; } = 100;
 
-    [Parameter]
     public int Height { get; set; } = 50;
 
-    [Parameter]
     public List<ListBoxItem> Items { get; set; } = new List<ListBoxItem>();
 
-    [Parameter]
     public CanvasComponent? CanvasComponent { get; set; }
 
-    [Parameter]
     public AsyncMouseClick? OnMouseClick { get; set; }
 
-    [Parameter]
     public KeyboardEvents.AsyncKeyPress? OnKeyPress { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    public void InitListBox()
     {
         ListBoxWindow = new Window { Id = this.Id, X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
         CanvasComponent?.WindowManager.AddWindow(ListBoxWindow);
         ListBoxWindow.Draw += DrawListBox;
         ListBoxWindow.KeyboardEvents.KeyPress += KeyPress;
         ListBoxWindow.MouseEvents.MouseClick += MouseClick;
-        if(CanvasComponent is not null)
+        if (CanvasComponent is not null)
         {
             ScrollBar1 = new Scrollbar(ScrollBar1Id, X + Width, Y, 11, Height, Items.Count, true, CanvasComponent);
             ScrollBar1.OnScroll += Scrollbar_OnScroll;
         }
-        await base.OnAfterRenderAsync(firstRender);
     }
 
     public async Task MouseClick(MouseCoords mouseCoords)
@@ -54,9 +51,9 @@
         int currentOffsetY = 0;
         for (int i = 0; i < visibleItems.Count; i++)
         {
-            if(IsPointInRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, X, Y + currentOffsetY, visibleItems[i].Width, visibleItems[i].Height))
+            if (IsPointInRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, X, Y + currentOffsetY, visibleItems[i].Width, visibleItems[i].Height))
             {
-                if(OnMouseClick is not null)
+                if (OnMouseClick is not null)
                 {
                     await OnMouseClick(mouseCoords, this, visibleItems[i]);
                 }
@@ -68,7 +65,7 @@
 
     public async Task KeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
     {
-        if(OnKeyPress is not null)
+        if (OnKeyPress is not null)
         {
             await OnKeyPress(keyboardEventType, keyboardEventArgs);
         }
@@ -77,7 +74,7 @@
     public async Task Scrollbar_OnScroll(int scrollPos, int topItemIndex)
     {
         topListBoxItemIndex = topItemIndex;
-        if(CanvasComponent?.CanvasComponentInfo is not null)
+        if (CanvasComponent?.CanvasComponentInfo is not null)
             await DrawListBox(CanvasComponent.CanvasComponentInfo);
     }
 
@@ -107,7 +104,7 @@
                 visibleItems.Add(Items[i]);
                 currentYOffset += Items[i].Height;
             }
-            if(ScrollBar1 is not null && canvasComponentInfo is not null)
+            if (ScrollBar1 is not null && canvasComponentInfo is not null)
             {
                 await ScrollBar1.DrawScrollBar(canvasComponentInfo);
             }

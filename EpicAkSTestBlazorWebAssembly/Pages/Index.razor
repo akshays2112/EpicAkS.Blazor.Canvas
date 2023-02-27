@@ -6,15 +6,8 @@
 @using EpicAkS.Blazor.Canvas.Enums
 @using EpicAkS.Blazor.Canvas
 @using EpicAkS.Blazor.Canvas.Components.BasicControls
-@using EpicAkS.Blazor.Canvas.Components.BasicControls.Classes
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <Button Id="TestButton1" X="10" Y="600" Width="100" Height="50" Text="Button" ButtonColor="blue"
-        CanvasComponent="@canvasComponent" MouseClick="@ButtonClick" KeyPress="@MyKeyPress" />
-    <Label Id="TestLabel1" X="10" Y="680" Width="100" Height="20" Text="Label" BackgroundColor="white"
-        TextColor="black" TextFont="bold 20px Ariel" TextFontHeight=10 CanvasComponent="@canvasComponent" />
-    <ListBox Id="TestListBox1" X="800" Y="10" Width="300" Height="200" BackgroundColor="lightblue"
-        Items="@listBoxItems" OnMouseClick="@TestListBox1MouseClick" CanvasComponent="@canvasComponent" />
 </CanvasComponent>
 <img @ref="@imgRef" src="64x64.jpg" style="display:none;" />
 @code {
@@ -67,6 +60,59 @@
             TextColor = "black", TextFont = "12px Tahoma", TextFontHeight = 12 }
     };
 
+    private Button? button;
+    private Label? label;
+    private ListBox? listBox;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            button = new Button
+                {
+                    Id = "TestButton1",
+                    X = 10,
+                    Y = 600,
+                    Width = 100,
+                    Height = 50,
+                    Text = "Button",
+                    ButtonColor = "blue",
+                    CanvasComponent = canvasComponent,
+                    MouseClick = ButtonClick,
+                    KeyPress = MyKeyPress
+                };
+            button.InitButton();
+            label = new Label
+                {
+                    Id = "TestLabel1",
+                    X = 10,
+                    Y = 680,
+                    Width = 100,
+                    Height = 20,
+                    Text = "Label",
+                    BackgroundColor = "white",
+                    TextColor = "black",
+                    TextFont = "bold 20px Ariel",
+                    TextFontHeight = 10,
+                    CanvasComponent = canvasComponent
+                };
+            label.InitLabel();
+            listBox = new ListBox
+                {
+                    Id = "TestListBox1",
+                    X = 800,
+                    Y = 10,
+                    Width = 300,
+                    Height = 200,
+                    Items = listBoxItems,
+                    OnMouseClick = TestListBox1MouseClick,
+                    CanvasComponent = canvasComponent
+                };
+            listBox.InitListBox();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
     private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)
     {
         CanvasClass? canvas = canvasComponent?.CanvasComponentInfo?.Canvas;
@@ -89,7 +135,7 @@
             await canvas.StrokeRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, 200, 200);
     }
 
-    private async Task TestListBox1MouseClick(MouseCoords mouseCoords, ListBoxItem listBoxItem)
+    private async Task TestListBox1MouseClick(MouseCoords mouseCoords, ListBox listBox, ListBoxItem listBoxItem)
     {
         CanvasClass? canvas = canvasComponent?.CanvasComponentInfo?.Canvas;
         if (canvas is not null)

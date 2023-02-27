@@ -8,12 +8,6 @@
 @using EpicAkS.Blazor.Canvas.Components.BasicControls
 @using static EpicAkS.Blazor.Canvas.Components.Helpers;
 <CanvasComponent @ref="canvasComponent" Id="@Id" DrawWindow="@DrawWindow">
-    <Button Id="TestButton1" X="10" Y="600" Width="100" Height="50" Text="Button" ButtonColor="blue" 
-        CanvasComponent="@canvasComponent" MouseClick="@ButtonClick" KeyPress="@MyKeyPress" />
-    <Label Id="TestLabel1" X="10" Y="680" Width="100" Height="20" Text="Label" BackgroundColor="white" 
-        TextColor="black" TextFont="bold 20px Ariel" TextFontHeight=10 CanvasComponent="@canvasComponent" />
-    <ListBox Id="TestListBox1" X="800" Y="10" Width="300" Height="200" 
-        Items="@listBoxItems" OnMouseClick="@TestListBox1MouseClick" CanvasComponent="@canvasComponent" />
 </CanvasComponent>
 <img @ref="imgRef" src="64x64.jpg" style="display:none;" />
 @code {
@@ -21,6 +15,10 @@
     private CanvasComponent? canvasComponent;
     private ElementReference imgRef;
     private List<ListBoxItem> listBoxItems = new();
+
+    private Button? button;
+    private Label? label;
+    private ListBox? listBox;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -31,6 +29,55 @@
             listBoxItems.Add(listBoxItem);
         }
         await base.OnParametersSetAsync();
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            button = new Button
+            {
+                Id = "TestButton1",
+                X = 10,
+                Y = 600,
+                Width = 100,
+                Height = 50,
+                Text = "Button",
+                ButtonColor = "blue",
+                CanvasComponent = canvasComponent,
+                MouseClick = ButtonClick,
+                KeyPress = MyKeyPress
+            };
+            button.InitButton();
+            label = new Label
+            {
+                Id = "TestLabel1",
+                X = 10,
+                Y = 680,
+                Width = 100,
+                Height = 20,
+                Text = "Label",
+                BackgroundColor = "white",
+                TextColor = "black",
+                TextFont = "bold 20px Ariel",
+                TextFontHeight = 10,
+                CanvasComponent = canvasComponent
+            };
+            label.InitLabel();
+            listBox = new ListBox
+            {
+                Id = "TestListBox1",
+                X = 800,
+                Y = 10,
+                Width = 300,
+                Height = 200,
+                Items = listBoxItems,
+                OnMouseClick = TestListBox1MouseClick,
+                CanvasComponent = canvasComponent
+            };
+            listBox.InitListBox();
+        }
+        return base.OnAfterRenderAsync(firstRender);
     }
 
     private async Task MyKeyPress(KeyboardEventTypes keyboardEventType, KeyboardEventArgs keyboardEventArgs)

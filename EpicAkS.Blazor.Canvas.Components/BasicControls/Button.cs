@@ -1,55 +1,53 @@
-﻿@using static EpicAkS.Blazor.Canvas.Components.Helpers
-@code {
-    public Window? LabelWindow { get; set; }
+﻿namespace EpicAkS.Blazor.Canvas.Components.BasicControls;
 
-    [Parameter]
+public class Button
+{
+    public Window? ButtonWindow { get; set; }
+
     public string Id { get; set; } = string.Empty;
 
-    [Parameter]
     public int X { get; set; }
 
-    [Parameter]
     public int Y { get; set; }
 
-    [Parameter]
     public int Width { get; set; } = 100;
 
-    [Parameter]
     public int Height { get; set; } = 50;
 
-    [Parameter]
     public string Text { get; set; } = "Button";
 
-    [Parameter]
     public string TextColor { get; set; } = "white";
 
-    [Parameter]
     public string TextFont { get; set; } = "20px serif";
 
-    [Parameter]
     public int TextFontHeight { get; set; } = 20;
 
-    [Parameter]
-    public string? BackgroundColor { get; set; } = "red";
+    public string? ButtonColor { get; set; } = "red";
 
-    [Parameter]
     public CanvasComponent? CanvasComponent { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    public MouseEvents.AsyncMouseClick? MouseClick { get; set; }
+
+    public KeyboardEvents.AsyncKeyPress? KeyPress { get; set; }
+
+    public void InitButton()
     {
-        LabelWindow = new Window { Id = this.Id, X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
-        CanvasComponent?.WindowManager.AddWindow(LabelWindow);
-        LabelWindow.Draw += DrawLabel;
-        await base.OnAfterRenderAsync(firstRender);
+        ButtonWindow = new Window { Id = this.Id, X = this.X, Y = this.Y, Width = this.Width, Height = this.Height };
+        CanvasComponent?.WindowManager.AddWindow(ButtonWindow);
+        ButtonWindow.Draw += DrawButton;
+        if (KeyPress is not null)
+            ButtonWindow.KeyboardEvents.KeyPress += KeyPress;
+        if (MouseClick is not null)
+            ButtonWindow.MouseEvents.MouseClick += MouseClick;
     }
 
-    public async Task DrawLabel(CanvasComponentInfo canvasComponentInfo)
+    public async Task DrawButton(Helpers.CanvasComponentInfo canvasComponentInfo)
     {
         CanvasClass? canvas = canvasComponentInfo?.Canvas;
         if (canvas is not null)
         {
             await canvas.ClearRect(X, Y, Width, Height);
-            await canvas.SetFillStyle(BackgroundColor ?? "white");
+            await canvas.SetFillStyle(ButtonColor);
             await canvas.FillRect(X, Y, Width, Height);
             await canvas.SetFillStyle(TextColor);
             await canvas.SetFont(TextFont);

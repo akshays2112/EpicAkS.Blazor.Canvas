@@ -48,11 +48,23 @@ public class Scrollbar
 
     public async Task MouseClick(MouseCoords mouseCoords)
     {
-        if (IsPointInRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, X + 2, Y + Height - 11, 7, 4))
+        if (IsPointInRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, X, Y + Height - 11, 11, 11))
         {
             if (TopItemIndex < MaxItems - 1)
             {
                 TopItemIndex++;
+                CurrentScrollPos = ((Height - 22) * TopItemIndex) / MaxItems;
+                if (CanvasComponent?.CanvasComponentInfo is not null)
+                    await DrawScrollBar(CanvasComponent.CanvasComponentInfo);
+                if (OnScroll is not null)
+                    await OnScroll(CurrentScrollPos, TopItemIndex);
+            }
+        } 
+        else if(IsPointInRect((int)mouseCoords.OffsetLeft, (int)mouseCoords.OffsetTop, X, Y, 11, 11))
+        {
+            if(TopItemIndex > 0)
+            {
+                TopItemIndex--;
                 CurrentScrollPos = ((Height - 22) * TopItemIndex) / MaxItems;
                 if (CanvasComponent?.CanvasComponentInfo is not null)
                     await DrawScrollBar(CanvasComponent.CanvasComponentInfo);

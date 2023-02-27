@@ -1,28 +1,24 @@
-﻿@code {
-    public Window? ListBoxItemWindow { get; set; }
+﻿using Microsoft.AspNetCore.Components;
+using System;
+using System.Collections.Generic;
+namespace EpicAkS.Blazor.Canvas.Components.BasicControls;
 
-    [Parameter]
+public class ListBoxItem
+{
     public int Width { get; set; } = 100;
 
-    [Parameter]
     public int Height { get; set; } = 20;
 
-    [Parameter]
     public string Text { get; set; } = "Button";
 
-    [Parameter]
     public string TextColor { get; set; } = "#656565";
 
-    [Parameter]
     public string TextFont { get; set; } = "12px serif";
 
-    [Parameter]
     public int TextFontHeight { get; set; } = 12;
 
-    [Parameter]
     public string? BackgroundColor { get; set; } = "white";
 
-    [Parameter]
     public int LeftPadding { get; set; } = 5;
 
     public void InitProperties(int width, int height, string text, string textColor, string textFont, int textFontHeight, string? backgroundColor)
